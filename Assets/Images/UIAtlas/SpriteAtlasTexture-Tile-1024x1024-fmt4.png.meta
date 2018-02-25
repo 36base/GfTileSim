@@ -1,0 +1,447 @@
+fileFormatVersion: 2
+guid: 72c97a586dbe01f4f898221deaebc0cb
+timeCreated: 1519309134
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpriteAtlasTexture-Tile-1024x1024-fmt4_0
+    21300002: SpriteAtlasTexture-Tile-1024x1024-fmt4_1
+    21300004: SpriteAtlasTexture-Tile-1024x1024-fmt4_2
+    21300006: SpriteAtlasTexture-Tile-1024x1024-fmt4_3
+    21300008: SpriteAtlasTexture-Tile-1024x1024-fmt4_4
+    21300010: SpriteAtlasTexture-Tile-1024x1024-fmt4_5
+    21300012: SpriteAtlasTexture-Tile-1024x1024-fmt4_7
+    21300014: SpriteAtlasTexture-Tile-1024x1024-fmt4_6
+    21300016: SpriteAtlasTexture-Tile-1024x1024-fmt4_8
+    21300018: SpriteAtlasTexture-Tile-1024x1024-fmt4_9
+    21300020: SpriteAtlasTexture-Tile-1024x1024-fmt4_10
+    21300022: SpriteAtlasTexture-Tile-1024x1024-fmt4_11
+    21300024: SpriteAtlasTexture-Tile-1024x1024-fmt4_12
+    21300026: SpriteAtlasTexture-Tile-1024x1024-fmt4_13
+    21300028: SpriteAtlasTexture-Tile-1024x1024-fmt4_14
+    21300030: SpriteAtlasTexture-Tile-1024x1024-fmt4_15
+    21300032: SpriteAtlasTexture-Tile-1024x1024-fmt4_16
+    21300034: SpriteAtlasTexture-Tile-1024x1024-fmt4_17
+    21300036: SpriteAtlasTexture-Tile-1024x1024-fmt4_18
+    21300038: SpriteAtlasTexture-Tile-1024x1024-fmt4_19
+    21300040: SpriteAtlasTexture-Tile-1024x1024-fmt4_20
+    21300042: SpriteAtlasTexture-Tile-1024x1024-fmt4_21
+    21300044: SpriteAtlasTexture-Tile-1024x1024-fmt4_22
+    21300046: SpriteAtlasTexture-Tile-1024x1024-fmt4_23
+    21300048: SpriteAtlasTexture-Tile-1024x1024-fmt4_24
+    21300050: SpriteAtlasTexture-Tile-1024x1024-fmt4_25
+    21300052: SpriteAtlasTexture-Tile-1024x1024-fmt4_26
+    21300054: SpriteAtlasTexture-Tile-1024x1024-fmt4_27
+    21300056: SpriteAtlasTexture-Tile-1024x1024-fmt4_28
+    21300058: SpriteAtlasTexture-Tile-1024x1024-fmt4_29
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_0
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 808
+        width: 114
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 590
+        width: 114
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_2
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 327
+        width: 114
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_3
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 157
+        width: 114
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_4
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 157
+        width: 114
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_5
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 0
+        width: 114
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_7
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 524
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_6
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 591
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_8
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 438
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_9
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 437
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_10
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 435
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_11
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 390
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_12
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 390
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_13
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 389
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_14
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 377
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_15
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 329
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_16
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 329
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_17
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 268
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_18
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 220
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_19
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 220
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_20
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 220
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_21
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 219
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_22
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_23
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 13
+        width: 150
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_24
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 331
+        width: 296
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_25
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 758
+        width: 296
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_26
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 0
+        width: 327
+        height: 326
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 287
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_28
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 764
+        width: 278
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_29
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 540
+        width: 123
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
