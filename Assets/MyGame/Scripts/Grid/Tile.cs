@@ -8,7 +8,9 @@ public class Tile : MonoBehaviour
     public Transform tr;
 
     public int tileNum;
+
     public Doll doll;
+    public DollSelecter.Select selecter;
 
     public Image image;
 

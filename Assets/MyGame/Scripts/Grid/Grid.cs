@@ -11,6 +11,8 @@ public class Grid : MonoBehaviour
 
     public int mousePos = 0;
 
+    public Doll selectedDoll;
+
     public event ImageOffHandler AllImageOff;
 
     private void Update()
@@ -42,13 +44,24 @@ public class Grid : MonoBehaviour
 
     }
 
-
-    public void Spawn(Doll doll, int pos)
+    public void Spawn(Doll doll, DollSelecter.Select selecter)
     {
-        if (pos - 1 < 0)
+        if (selecter.gridPos - 1 < 0)
             return;
-        doll.Spawn(tiles[pos - 1].tr);
-        tiles[pos - 1].doll = doll;
+        if (tiles[selecter.gridPos - 1].doll != null)
+            Despawn(selecter.gridPos);
+
+        if (doll.go.activeSelf)
+        {
+            MoveTo(doll.pos, selecter.gridPos);
+        }
+        else
+        {
+            doll.Spawn(tiles[selecter.gridPos - 1].tr);
+            doll.pos = selecter.gridPos;
+            tiles[selecter.gridPos - 1].doll = doll;
+            tiles[selecter.gridPos - 1].selecter = selecter;
+        }
     }
 
     public void Despawn(int pos)
@@ -68,10 +81,24 @@ public class Grid : MonoBehaviour
             return;
 
         tiles[from - 1].doll.tr.localPosition = tiles[to - 1].tr.localPosition;
+        tiles[from - 1].doll.pos = to;
 
-        var temp = tiles[to - 1].doll;
+        if (tiles[to - 1].doll != null)
+        {
+            tiles[to - 1].doll.tr.localPosition = tiles[from - 1].tr.localPosition;
+            tiles[to - 1].doll.pos = from;
+        }
+
+        tiles[to - 1].selecter.gridPos = from;
+        if (tiles[from - 1].selecter != null)
+            tiles[from - 1].selecter.gridPos = to;
+
+        var tempDoll = tiles[to - 1].doll;
+        var tempSelecter = tiles[to - 1].selecter;
         tiles[to - 1].doll = tiles[from - 1].doll;
-        tiles[from - 1].doll = temp;
+        tiles[to - 1].selecter = tiles[from - 1].selecter;
+        tiles[from - 1].doll = tempDoll;
+        tiles[from - 1].selecter = tempSelecter;
     }
 
     public void SelectTile(int num)
@@ -83,16 +110,26 @@ public class Grid : MonoBehaviour
 
         if (tiles[num - 1].doll == null)
             return;
+
+        if (selectedDoll != null && selectedDoll != tiles[num - 1].doll)
+            selectedDoll.SetState(Doll.DollState.Idle);
+
         tiles[num - 1].doll.SetState(Doll.DollState.Selected);
+        selectedDoll = tiles[num - 1].doll;
     }
 
     public void PickADoll()
     {
         if (pickedDoll != 0)
             return;
+
         pickedDoll = mousePos;
+
         if (tiles[pickedDoll - 1].doll == null)
+        {
+            pickedDoll = 0;
             return;
+        }
 
         tiles[pickedDoll - 1].doll.SetState(Doll.DollState.Following);
     }

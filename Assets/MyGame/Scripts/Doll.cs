@@ -24,6 +24,8 @@ public class Doll : MonoBehaviour
     [HideInInspector]
     public Transform tr;
 
+    public int pos = 0;
+
     private void Awake()
     {
         go = gameObject;

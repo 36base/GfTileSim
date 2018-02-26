@@ -25,12 +25,12 @@ public class DollList : UIBackBtnHandle
             return;
         if (currentSelection < 1)
             return;
-        Doll doll;
 
+        Doll doll;
         if (SingleTon.instance.mgr.dollDict.TryGetValue(num, out doll))
         {
             grid.Spawn(doll
-                , SingleTon.instance.dollSelecter.selects[currentSelection - 1].gridPos);
+                , SingleTon.instance.dollSelecter.selects[currentSelection - 1]);
         }
         Close();
     }
