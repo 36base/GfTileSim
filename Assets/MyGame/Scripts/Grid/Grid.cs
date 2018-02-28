@@ -51,8 +51,11 @@ public class Grid : MonoBehaviour
         if (tiles[selecter.gridPos - 1].doll != null)
             Despawn(selecter.gridPos);
 
+        selecter.image.sprite = doll.profilePic;
+
         if (doll.go.activeSelf)
         {
+            SingleTon.instance.dollSelecter.selects[doll.pos - 1].image.sprite = SingleTon.instance.nullButtonSprite;
             MoveTo(doll.pos, selecter.gridPos, false);
         }
         else

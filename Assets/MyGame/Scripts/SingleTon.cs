@@ -16,6 +16,8 @@ public class SingleTon : MonoBehaviour
     public Sprite buffSprite;
     public Sprite nullSprite;
 
+    public Sprite nullButtonSprite;
+
     public Sprite[] gunTypeSprites;
     public Sprite[] statTypeSprites;
     [Header("Prefabs")]

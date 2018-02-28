@@ -89,6 +89,16 @@ public class DollManager : MonoBehaviour
                 Debug.Log("Null " + list[i].name);
                 continue;
             }
+
+            sb.Length = 0;
+            sb.Append("icons/");
+            if (list[i].id < 1000)
+                sb.Append(list[i].id.ToString("000"));
+            else
+                sb.Append(list[i].id.ToString("0000"));
+
+            var picture = Resources.Load<Sprite>(sb.ToString());
+
             var go = Instantiate(dollPrefab, dollPool.position, Quaternion.identity);
             var doll = go.GetComponent<Doll>();
             doll.tr.SetParent(dollPool, false);
@@ -97,6 +107,8 @@ public class DollManager : MonoBehaviour
             doll.dollData = list[i];
             doll.skelAnim.skeletonDataAsset = skel;
             doll.skelAnim.Reset();
+
+            doll.profilePic = picture;
             go.SetActive(false);
 
             dollDict.Add(list[i].id, doll);
