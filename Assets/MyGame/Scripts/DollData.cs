@@ -46,12 +46,18 @@ public class Effect
 
             this.value = value;
         }
+        public GridEffect(Stats type, int value)
+        {
+            this.type = type;
+
+            this.value = value;
+        }
     }
 
     public DollType effectType;
     public int effectCenter;
     public int[] effectPos;
-    public List<GridEffect> gridEffects;
+    public GridEffect[] gridEffects;
 
 }
 

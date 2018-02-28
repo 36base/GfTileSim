@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,35 +30,44 @@ public class DollManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var dolldata = new DollData();
-
-            dolldata.id = (int)data[i]["id"];
-            dolldata.name = data[i]["name"].ToString();
-            dolldata.rank = (int)data[i]["rank"];
-            dolldata.type = (DollType)(int)data[i]["type"];
-
-
-            var effect = new Effect();
-
-            effect.effectType = (DollType)(int)data[i]["effect"]["effectType"];
-            effect.effectCenter = (int)data[i]["effect"]["effectCenter"];
-
-            var arrayCount = data[i]["effect"]["effectPos"].Count;
-            effect.effectPos = new int[arrayCount];
-
-            for (int j = 0; j < arrayCount; j++)
+            try
             {
-                effect.effectPos[j] = (int)data[i]["effect"]["effectPos"][j];
-            }
-            effect.gridEffects = new List<Effect.GridEffect>();
+                dolldata.id = (int)data[i]["id"];
+                dolldata.name = data[i]["name"].ToString();
+                dolldata.rank = (int)data[i]["rank"];
+                dolldata.type = (DollType)(int)data[i]["type"];
 
-            for (int j = 0; j < data[i]["effect"]["gridEffect"].Count; j++)
+
+                var effect = new Effect();
+
+                effect.effectType = (DollType)(int)data[i]["effect"]["effectType"];
+                effect.effectCenter = (int)data[i]["effect"]["effectCenter"];
+
+                var arrayCount = data[i]["effect"]["effectPos"].Count;
+                effect.effectPos = new int[arrayCount];
+
+                for (int j = 0; j < arrayCount; j++)
+                {
+                    effect.effectPos[j] = (int)data[i]["effect"]["effectPos"][j];
+                }
+
+                arrayCount = data[i]["effect"]["gridEffect"].Count;
+                effect.gridEffects = new Effect.GridEffect[arrayCount];
+
+                for (int j = 0; j < arrayCount; j++)
+                {
+                    effect.gridEffects[j] = new Effect.GridEffect(
+                        data[i]["effect"]["gridEffect"][j]["type"].ToString()
+                        , (int)data[i]["effect"]["gridEffect"][j]["value"]);
+                }
+
+                dolldata.effect = effect;
+            }
+            catch
             {
-                effect.gridEffects.Add(new Effect.GridEffect(
-                    data[i]["effect"]["gridEffect"][j]["type"].ToString()
-                    , (int)data[i]["effect"]["gridEffect"][j]["value"]));
+                Debug.Log("Wrong json data " + i);
+                continue;
             }
-
-            dolldata.effect = effect;
 
             list.Add(dolldata);
         }
@@ -79,8 +89,7 @@ public class DollManager : MonoBehaviour
                 Debug.Log("Null " + list[i].name);
                 continue;
             }
-            var go = Instantiate(dollPrefab, dollPool.position, Quaternion.identity)
-                as GameObject;
+            var go = Instantiate(dollPrefab, dollPool.position, Quaternion.identity);
             var doll = go.GetComponent<Doll>();
             doll.tr.SetParent(dollPool, false);
 

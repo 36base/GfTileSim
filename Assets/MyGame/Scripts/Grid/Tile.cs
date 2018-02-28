@@ -4,11 +4,15 @@ using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
-    public Grid grid;
+    public MiniBuffSetter miniBuff;
     public Transform tr;
 
     public int tileNum;
 
+    public Tile[] neighbors;
+    public TileBuff tileBuff;
+
+    [Space]
     public Doll doll;
     public DollSelecter.Select selecter;
 
@@ -18,23 +22,33 @@ public class Tile : MonoBehaviour
     {
         tr = transform;
         image = GetComponent<Image>();
-        grid.AllImageOff += OffImage;
+        SingleTon.instance.grid.AllImageOff += OffImage;
+        tileBuff = GetComponent<TileBuff>();
     }
 
     private void OnMouseEnter()
     {
         //Debug.Log("Enter " + tileNum);
-        grid.mousePos = tileNum;
+        SingleTon.instance.grid.mousePos = tileNum;
     }
 
     private void OnMouseExit()
     {
         //Debug.Log("Exit " + tileNum);
-        grid.mousePos = 0;
+        SingleTon.instance.grid.mousePos = 0;
     }
 
-    private void OffImage()
+    public void OffImage()
     {
-        image.enabled = false;
+        image.sprite = SingleTon.instance.nullSprite;
     }
+    public void SelectImage()
+    {
+        image.sprite = SingleTon.instance.selectedSprite;
+    }
+    public void BuffImage()
+    {
+        image.sprite = SingleTon.instance.buffSprite;
+    }
+
 }

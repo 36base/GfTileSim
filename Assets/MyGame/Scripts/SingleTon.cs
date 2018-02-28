@@ -11,6 +11,17 @@ public class SingleTon : MonoBehaviour
     public DollSelecter dollSelecter;
     public Grid grid;
 
+    [Header("Sprites")]
+    public Sprite selectedSprite;
+    public Sprite buffSprite;
+    public Sprite nullSprite;
+
+    public Sprite[] gunTypeSprites;
+    public Sprite[] statTypeSprites;
+    [Header("Prefabs")]
+    public GameObject buffPrefab;
+    public GameObject indiBuffPrefab;
+
     void Awake()
     {
         if (instance == null)
@@ -21,6 +32,5 @@ public class SingleTon : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 }
