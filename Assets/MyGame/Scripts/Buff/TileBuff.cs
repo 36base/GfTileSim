@@ -49,9 +49,9 @@ public class TileBuff : MonoBehaviour
 
     }
 
-    public void AddTotalStats(Effect.GridEffect effect)
+    public void AddTotalStats(Effect.GridEffect effect, int multiple = 1)
     {
-        totalStats[(int)effect.type] += effect.value;
+        totalStats[(int)effect.type] += effect.value * multiple;
     }
 
     public void ResetTotalStats()
@@ -86,7 +86,7 @@ public class TileBuff : MonoBehaviour
         }
     }
 
-    public void AddIndiBuff(Effect effect)
+    public void AddIndiBuff(Effect effect, int multiple = 1)
     {
         buffGunType.enabled = true;
         buffGunType.sprite = SingleTon.instance.gunTypeSprites[(int)effect.effectType];
@@ -94,7 +94,7 @@ public class TileBuff : MonoBehaviour
         for (int i = 0; i < effect.gridEffects.Length; i++)
         {
             indiBuffs[i].SetBuff(SingleTon.instance.statTypeSprites[(int)effect.gridEffects[i].type]
-                , effect.gridEffects[i].value);
+                , effect.gridEffects[i].value * multiple);
 
             indiBuffs[i].go.SetActive(true);
         }

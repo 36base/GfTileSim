@@ -126,11 +126,11 @@ public class Grid : MonoBehaviour
 
         CalcIndiBuff(num);
 
-        if (tiles[num - 1].doll == null)
-            return;
-
         if (selectedDoll != null && selectedDoll != tiles[num - 1].doll)
             selectedDoll.SetState(Doll.DollState.Idle);
+
+        if (tiles[num - 1].doll == null)
+            return;
 
         tiles[num - 1].doll.SetState(Doll.DollState.Selected);
         selectedDoll = tiles[num - 1].doll;
@@ -187,23 +187,33 @@ public class Grid : MonoBehaviour
             var effect = tiles[i].doll.dollData.effect;
             for (int j = 0; j < effect.effectPos.Length; j++)
             {
+                var calcPos = CalcBuffPos(effect.effectPos[j], tiles[i].doll.pos, effect.effectCenter);
+                if (calcPos == 0)
+                    continue;
+
+                var target = tiles[calcPos - 1];
+
                 for (int k = 0; k < effect.gridEffects.Length; k++)
                 {
                     if (effect.effectPos[j] - 1 < 0)
                         continue;
 
-                    var naver = tiles[i].neighbors[effect.effectPos[j] - 1];
-
-                    if (naver == null
-                        || naver.doll == null)
+                    if (target == null
+                        || target.doll == null)
                         continue;
 
-
-                    if (effect.effectType == naver.doll.dollData.type
+                    if (effect.effectType == target.doll.dollData.type
                         || effect.effectType == DollType.All)
                     {
-                        tiles[i].neighbors[effect.effectPos[j] - 1].tileBuff
-                            .AddTotalStats(effect.gridEffects[k]);
+                        if (tiles[i].doll.dollData.type == DollType.HG)
+                        {
+                            target.tileBuff.AddTotalStats(effect.gridEffects[k], 2);
+                        }
+                        else
+                        {
+                            target.tileBuff.AddTotalStats(effect.gridEffects[k]);
+                        }
+
                     }
                 }
             }
@@ -232,22 +242,65 @@ public class Grid : MonoBehaviour
             if (effect.effectPos[i] - 1 < 0)
                 continue;
 
-            var naver = tiles[pos - 1].neighbors[effect.effectPos[i] - 1];
-
-            if (naver == null
-                || naver.doll == null)
+            int calcPos = CalcBuffPos(effect.effectPos[i], tiles[pos - 1].doll.pos, effect.effectCenter);
+            if (calcPos == 0)
                 continue;
 
-            naver.tileBuff.AddIndiBuff(effect);
+            var target = tiles[calcPos - 1];
 
-            if (effect.effectType == DollType.All)
+            if (target == null)
                 continue;
 
-            if (naver.doll == null
-                || effect.effectType != naver.doll.dollData.type)
+            if (tiles[pos - 1].doll.dollData.type == DollType.HG)
             {
-                naver.tileBuff.cg.alpha = 0.6f;
+                target.tileBuff.AddIndiBuff(effect, 2);
+            }
+            else
+            {
+                target.tileBuff.AddIndiBuff(effect);
+            }
+
+
+            target.BuffImage();
+            if (effect.effectType == DollType.All
+                && target.doll != null)
+                continue;
+
+            if (target.doll == null
+                || effect.effectType != target.doll.dollData.type)
+            {
+                target.tileBuff.cg.alpha = 0.6f;
             }
         }
+    }
+
+
+    //Util
+    private int CalcBuffPos(int effectPos, int dollPos, int center)
+    {
+        int effect_x = effectPos % 3;
+        if (effect_x == 0) effect_x = 3;
+        int effect_y = effectPos % 3 == 0 ? effectPos / 3 : effectPos / 3 + 1;
+
+        int doll_x = dollPos % 3;
+        if (doll_x == 0) doll_x = 3;
+        int doll_y = dollPos % 3 == 0 ? dollPos / 3 : dollPos / 3 + 1;
+
+        int center_x = center % 3;
+        if (center_x == 0) center_x = 3;
+        int center_y = center % 3 == 0 ? center / 3 : center / 3 + 1;
+
+        var delta_x = doll_x - center_x;
+        var delta_y = doll_y - center_y;
+
+        if (effect_x + delta_x > 3 || effect_x + delta_x < 1
+            || effect_y + delta_y > 3 || effect_y + delta_y < 1)
+            return 0;
+
+        int value = effectPos + dollPos - center;
+        if (value < 1 || value > 9)
+            return 0;
+        else
+            return value;
     }
 }
