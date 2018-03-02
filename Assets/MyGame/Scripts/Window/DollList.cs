@@ -16,6 +16,10 @@ public class DollList : UIBackBtnHandle
     public int noSortValue = 1;
     public int rareSortValue = -1;
     public int nameSortValue = 1;
+    public int gunBitFilterValue = 0;
+    public int rareBitFilterValue = 0;
+    public Image[] gunFilterImages;
+    public Image[] rareFilterImages;
 
     public List<ListElement> elements = new List<ListElement>();
 
@@ -105,12 +109,85 @@ public class DollList : UIBackBtnHandle
         }
     }
 
-    public void Filter(int type)
+    public void GunBitFilter(int bit)
+    {
+        gunBitFilterValue ^= (1 << bit - 1);
+
+        for (int i = 0; i < 6; i++)
+        {
+            if ((gunBitFilterValue & (1 << i)) > 0)
+            {
+                GunFilter(i + 1, true);
+                gunFilterImages[i].color = Color.yellow;
+            }
+            else
+            {
+                GunFilter(i + 1, false);
+                gunFilterImages[i].color = Color.white;
+            }
+
+        }
+
+        if (gunBitFilterValue == 0)
+        {
+            for (int i = 1; i < 7; i++)
+            {
+                GunFilter(i, true);
+            }
+        }
+    }
+
+    private void GunFilter(int type, bool on)
     {
         for (int i = 0; i < elements.Count; i++)
         {
             if (elements[i].doll.dollData.type == (DollType)type)
-                elements[i].go.SetActive(!elements[i].go.activeSelf);
+                elements[i].go.SetActive(on);
+        }
+    }
+
+    public void RareBitFilter(int bit)
+    {
+        rareBitFilterValue ^= (1 << bit - 2);
+
+        for (int i = 0; i < 5; i++)
+        {
+            if ((rareBitFilterValue & (1 << i)) > 0)
+            {
+                RareFilter(i + 2, true);
+                rareFilterImages[i].color = Color.yellow;
+            }
+            else
+            {
+                RareFilter(i + 2, false);
+                rareFilterImages[i].color = Color.white;
+            }
+
+        }
+
+        if (rareBitFilterValue == 0)
+        {
+            for (int i = 2; i < 7; i++)
+            {
+                RareFilter(i, true);
+            }
+        }
+    }
+
+    private void RareFilter(int rare, bool on)
+    {
+        for (int i = 0; i < elements.Count; i++)
+        {
+            if(rare != 6)
+            {
+                if (elements[i].doll.dollData.rank == rare)
+                    elements[i].go.SetActive(on);
+            }
+            else
+            {
+                if (elements[i].doll.dollData.id > 999)
+                    elements[i].go.SetActive(on);
+            }
         }
     }
 
@@ -121,5 +198,17 @@ public class DollList : UIBackBtnHandle
         if (filterIndex >= filters.Length)
             filterIndex = 0;
         filters[filterIndex].SetActive(true);
+
+        for(int i =0;i<gunFilterImages.Length;i++)
+        {
+            gunFilterImages[i].color = Color.white;
+        }
+        gunBitFilterValue = 0;
+
+        for (int i = 0; i < rareFilterImages.Length; i++)
+        {
+            rareFilterImages[i].color = Color.white;
+        }
+        rareBitFilterValue = 0;
     }
 }
