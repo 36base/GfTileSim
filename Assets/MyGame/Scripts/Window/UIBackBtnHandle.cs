@@ -29,6 +29,11 @@ public class UIBackBtnHandle : MonoBehaviour
         Window(false);
     }
 
+    public virtual void OpenOrClose()
+    {
+        Window(!isWindow);
+    }
+
     private void Window(bool value)
     {
         isWindow = value;

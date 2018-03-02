@@ -5,7 +5,6 @@ using System.IO;
 
 public class CaptureScreen : MonoBehaviour
 {
-    public GameObject captureObj;
 
     public float waitTime = 1f;
     float currTime = 0f;
@@ -71,11 +70,11 @@ public class CaptureScreen : MonoBehaviour
                 File.WriteAllBytes(filePath, imageByte);
 
                 new NativeShare().AddFile(filePath).SetSubject("소녀전선 제대 시뮬레이터").SetText("- Made By Cosmos0").Share();
-                captureObj.SetActive(true);
+                SingleTon.instance.msg.SetMsg("공유");
             }
             catch
             {
-                Debug.Log("Share Error");
+                SingleTon.instance.msg.SetMsg("공유 에러");
             }
 
         }
@@ -84,19 +83,25 @@ public class CaptureScreen : MonoBehaviour
             try
             {
                 var permission = NativeGallery.SaveImageToGallery(imageByte, "GFSIM", "HOXY {0}.png");
+                
 
                 if (permission == NativeGallery.Permission.ShouldAsk)
                 {
                     NativeGallery.RequestPermission();
+                    SingleTon.instance.msg.SetMsg("캡쳐 실패!");
                 }
                 else if (permission == NativeGallery.Permission.Denied)
                 {
-
+                    SingleTon.instance.msg.SetMsg("캡쳐 실패!");
                 }
+                else
+                    SingleTon.instance.msg.SetMsg("캡쳐 됨!");
+
+
             }
             catch
             {
-                Debug.Log("Capture Error");
+                SingleTon.instance.msg.SetMsg("캡쳐 에러");
             }
         }
 

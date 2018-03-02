@@ -292,6 +292,7 @@ public class Grid : MonoBehaviour
     {
         ResetIndiBuff();
         AllImageOff();
+        SingleTon.instance.msg.SetMsg("초기화");
 
         for (int i = 0; i < tiles.Length; i++)
         {
