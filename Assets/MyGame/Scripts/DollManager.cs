@@ -14,6 +14,8 @@ public class DollManager : MonoBehaviour
 
     public Dictionary<int, Doll> dollDict = new Dictionary<int, Doll>();
 
+    public string[] AtlasPath;
+
     private void Awake()
     {
         Init();
@@ -72,7 +74,6 @@ public class DollManager : MonoBehaviour
             list.Add(dolldata);
         }
 
-
         var sb = new StringBuilder();
         for (int i = 0; i < list.Count; i++)
         {
@@ -90,15 +91,6 @@ public class DollManager : MonoBehaviour
                 continue;
             }
 
-            sb.Length = 0;
-            sb.Append("icons/");
-            if (list[i].id < 1000)
-                sb.Append(list[i].id.ToString("000"));
-            else
-                sb.Append(list[i].id.ToString("0000"));
-
-            var picture = Resources.Load<Sprite>(sb.ToString());
-
             var go = Instantiate(dollPrefab, dollPool.position, Quaternion.identity);
             var doll = go.GetComponent<Doll>();
             doll.tr.SetParent(dollPool, false);
@@ -108,12 +100,50 @@ public class DollManager : MonoBehaviour
             doll.skelAnim.skeletonDataAsset = skel;
             doll.skelAnim.Reset();
 
-            doll.profilePic = picture;
             go.SetActive(false);
 
             dollDict.Add(list[i].id, doll);
-
-            SingleTon.instance.dollList.AddContent(doll);
         }
+
+        for (int i = 0; i < AtlasPath.Length; i++)
+        {
+            LoadFromAtlas(AtlasPath[i]);
+        }
+
+    }
+
+    private void LoadFromAtlas(string path)
+    {
+        var pics = Resources.LoadAll<Sprite>(path);
+        if (pics == null)
+            return;
+
+        for (int i = 0; i < pics.Length; i++)
+        {
+            int key;
+            Doll doll;
+            //tryparse : false일때 key는 0반환
+            if (Int32.TryParse(pics[i].name, out key))
+            {
+                if (dollDict.TryGetValue(key, out doll))
+                {
+                    doll.profilePic = pics[i];
+                    SingleTon.instance.dollList.AddContent(doll);
+                }
+                else
+                {
+                    Debug.Log("There is no Key " + key);
+                }
+            }
+            else
+            {
+                Debug.Log("Convert Failed " + pics[i].name);
+            }
+        }
+    }
+
+    public void AppExit()
+    {
+        Application.Quit();
     }
 }

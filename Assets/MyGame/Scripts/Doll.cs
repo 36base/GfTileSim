@@ -25,6 +25,7 @@ public class Doll : MonoBehaviour
     public Transform tr;
 
     public int pos = 0;
+    public DollSelecter.Select selecter;
 
     private void Awake()
     {

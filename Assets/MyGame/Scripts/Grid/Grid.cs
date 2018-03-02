@@ -52,10 +52,12 @@ public class Grid : MonoBehaviour
             Despawn(selecter.gridPos);
 
         selecter.image.sprite = doll.profilePic;
+        ResetIndiBuff();
+        AllImageOff();
 
         if (doll.go.activeSelf)
         {
-            SingleTon.instance.dollSelecter.selects[doll.pos - 1].image.sprite = SingleTon.instance.nullButtonSprite;
+            doll.selecter.image.sprite = SingleTon.instance.nullButtonSprite;
             MoveTo(doll.pos, selecter.gridPos, false);
         }
         else
@@ -66,7 +68,7 @@ public class Grid : MonoBehaviour
             tiles[selecter.gridPos - 1].selecter = selecter;
             tiles[selecter.gridPos - 1].miniBuff.SetMiniBuff(doll.dollData);
         }
-
+        doll.selecter = selecter;
 
         CalcBuff();
     }
@@ -78,7 +80,6 @@ public class Grid : MonoBehaviour
         tiles[pos - 1].doll.Despawn();
         tiles[pos - 1].doll = null;
         tiles[pos - 1].miniBuff.MiniBuffOff();
-
     }
 
     private void MoveTo(int from, int to, bool swap)
@@ -111,9 +112,10 @@ public class Grid : MonoBehaviour
         if (!swap)
             return;
 
-        tiles[to - 1].selecter.gridPos = from;
-        if (tiles[from - 1].selecter != null)
-            tiles[from - 1].selecter.gridPos = to;
+        tiles[from - 1].selecter.gridPos = to;
+        
+        if (tiles[to - 1].selecter != null)
+            tiles[to - 1].selecter.gridPos = from;
 
         var tempSelecter = tiles[to - 1].selecter;
         tiles[to - 1].selecter = tiles[from - 1].selecter;
@@ -125,7 +127,6 @@ public class Grid : MonoBehaviour
         if (num < 1)
             return;
         AllImageOff();
-        tiles[num - 1].SelectImage();
 
         CalcIndiBuff(num);
 
@@ -134,6 +135,8 @@ public class Grid : MonoBehaviour
 
         if (tiles[num - 1].doll == null)
             return;
+
+        tiles[num - 1].SelectImage();
 
         tiles[num - 1].doll.SetState(Doll.DollState.Selected);
         selectedDoll = tiles[num - 1].doll;
@@ -277,6 +280,28 @@ public class Grid : MonoBehaviour
         }
     }
 
+    public void ResetIndiBuff()
+    {
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            tiles[i].tileBuff.ResetIndiBuff();
+        }
+    }
+
+    public void ResetAll()
+    {
+        ResetIndiBuff();
+        AllImageOff();
+
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            if (tiles[i].doll == null)
+                continue;
+            Despawn(i + 1);
+        }
+
+        CalcBuff();
+    }
 
     //Util
     private int CalcBuffPos(int effectPos, int dollPos, int center)

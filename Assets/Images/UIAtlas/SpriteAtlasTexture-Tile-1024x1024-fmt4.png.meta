@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 72c97a586dbe01f4f898221deaebc0cb
-timeCreated: 1519819004
+timeCreated: 1519943811
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,6 +98,14 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
     maxTextureSize: 1024
     textureFormat: -1
     textureCompression: 1
@@ -424,9 +432,9 @@ TextureImporter:
       name: SpriteAtlasTexture-Tile-1024x1024-fmt4_24
       rect:
         serializedVersion: 2
-        x: 514
+        x: 630
         y: 331
-        width: 296
+        width: 180
         height: 185
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
