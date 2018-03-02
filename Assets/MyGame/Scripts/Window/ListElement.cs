@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ListElement : MonoBehaviour, IPointerDownHandler
+public class ListElement : MonoBehaviour, IPointerDownHandler, IPointerExitHandler
 {
     public Doll doll;
     public Transform tr;
@@ -11,6 +11,11 @@ public class ListElement : MonoBehaviour, IPointerDownHandler
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("hi");
+        SingleTon.instance.dollDiscript.Show(tr, doll);
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        SingleTon.instance.dollDiscript.Off();
     }
 }

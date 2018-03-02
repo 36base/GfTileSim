@@ -22,6 +22,8 @@ public class CaptureScreen : MonoBehaviour
 
     public void Capture()
     {
+        if (SingleTon.instance.dollList.isWindow)
+            return;
         if (wait)
             return;
         currTime = 0f;
@@ -30,6 +32,8 @@ public class CaptureScreen : MonoBehaviour
     }
     public void Share()
     {
+        if (SingleTon.instance.dollList.isWindow)
+            return;
         if (wait)
             return;
         currTime = 0f;

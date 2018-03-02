@@ -36,6 +36,7 @@ public class DollManager : MonoBehaviour
             {
                 dolldata.id = (int)data[i]["id"];
                 dolldata.name = data[i]["name"].ToString();
+                dolldata.krName = data[i]["krName"].ToString();
                 dolldata.rank = (int)data[i]["rank"];
                 dolldata.type = (DollType)(int)data[i]["type"];
 

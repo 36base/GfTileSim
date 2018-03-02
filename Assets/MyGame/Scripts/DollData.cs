@@ -66,6 +66,7 @@ public class DollData
 {
     public int id;
     public string name;
+    public string krName;
     public int rank;
     public DollType type;
     public Effect effect;
