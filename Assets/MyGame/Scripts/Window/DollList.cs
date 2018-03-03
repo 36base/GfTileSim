@@ -94,7 +94,7 @@ public class DollList : UIBackBtnHandle
     {
         elements.Sort((a, b) =>
         {
-            return nameSortValue * String.Compare(a.doll.dollData.name, b.doll.dollData.name);
+            return nameSortValue * String.Compare(a.doll.dollData.krName, b.doll.dollData.krName);
         });
 
         SortAllElements();
@@ -123,6 +123,9 @@ public class DollList : UIBackBtnHandle
         {
             gunFilterImages[i].color = Color.white;
         }
+
+        gunBitFilterValue = 0;
+        rareBitFilterValue = 0;
     }
 
     public void GunFilter(int bit)
@@ -194,143 +197,6 @@ public class DollList : UIBackBtnHandle
             elements[i].go.SetActive(value);
         }
     }
-
-
-    //private void _Filtering()
-    //{
-    //    bool value;
-
-    //    for (int i = 0; i < elements.Count; i++)
-    //    {
-    //        value = false;
-
-    //        if (gunBitFilterValue == 0)
-    //            value = true;
-    //        else
-    //            for (int j = 1; j < 7; j++)
-    //            {
-    //                if ((gunBitFilterValue & (1 << (j - 1))) > 0)
-    //                {
-    //                    if ((int)elements[i].doll.dollData.type == j)
-    //                    {
-    //                        value = true;
-    //                        break;
-    //                    }
-    //                }
-    //            }
-
-    //        if (!value)
-    //            continue;
-
-    //        value = false;
-
-    //        if (rareBitFilterValue == 0)
-    //            value = true;
-    //        else if ((rareBitFilterValue & (1 << 4)) > 0)
-    //        {
-    //            if (elements[i].doll.id > 999)
-    //            {
-    //                value = true;
-    //            }
-    //        }
-    //        else
-    //            for (int j = 2; j < 6; j++)
-    //            {
-    //                if ((rareBitFilterValue & (1 << (j - 2))) > 0)
-    //                {
-    //                    if (elements[i].doll.dollData.rank == j)
-    //                    {
-    //                        value = true;
-    //                        break;
-    //                    }
-    //                }
-    //            }
-
-    //    }
-    //}
-
-
-    //public void GunBitFilter(int bit)
-    //{
-    //    gunBitFilterValue ^= (1 << bit - 1);
-
-    //    for (int i = 0; i < 6; i++)
-    //    {
-    //        if ((gunBitFilterValue & (1 << i)) > 0)
-    //        {
-    //            GunFilter(i + 1, true);
-    //            gunFilterImages[i].color = Color.yellow;
-    //        }
-    //        else
-    //        {
-    //            GunFilter(i + 1, false);
-    //            gunFilterImages[i].color = Color.white;
-    //        }
-
-    //    }
-
-    //    if (gunBitFilterValue == 0)
-    //    {
-    //        for (int i = 1; i < 7; i++)
-    //        {
-    //            GunFilter(i, true);
-    //        }
-    //    }
-    //}
-
-    //private void GunFilter(int type, bool on)
-    //{
-    //    for (int i = 0; i < elements.Count; i++)
-    //    {
-    //        if (elements[i].doll.dollData.type == (DollType)type)
-    //            elements[i].go.SetActive(on);
-    //    }
-    //}
-
-    //public void RareBitFilter(int bit)
-    //{
-    //    rareBitFilterValue ^= (1 << bit - 2);
-
-    //    for (int i = 0; i < 5; i++)
-    //    {
-    //        if ((rareBitFilterValue & (1 << i)) > 0)
-    //        {
-    //            RareFilter(i + 2, true);
-    //            rareFilterImages[i].color = Color.yellow;
-    //        }
-    //        else
-    //        {
-    //            RareFilter(i + 2, false);
-    //            rareFilterImages[i].color = Color.white;
-    //        }
-
-    //    }
-
-    //    if (rareBitFilterValue == 0)
-    //    {
-    //        for (int i = 2; i < 7; i++)
-    //        {
-    //            RareFilter(i, true);
-    //        }
-    //    }
-    //}
-
-    //private void RareFilter(int rare, bool on)
-    //{
-    //    for (int i = 0; i < elements.Count; i++)
-    //    {
-    //        if (rare != 6)
-    //        {
-    //            if (elements[i].doll.dollData.rank == rare)
-    //                elements[i].go.SetActive(on);
-    //        }
-    //        else
-    //        {
-    //            if (elements[i].doll.dollData.id > 999)
-    //                elements[i].go.SetActive(on);
-    //        }
-    //    }
-    //}
 
     public void NextButton()
     {
