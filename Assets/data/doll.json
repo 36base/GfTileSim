@@ -7581,7 +7581,7 @@
   "effect": {
     "effectType": 0,
     "effectCenter": 5,
-    "effectPos": [3, 4, 9],
+    "effectPos": [1, 6, 7],
     "gridEffect": [{
       "type": "pow",
       "value": 36
@@ -7619,7 +7619,7 @@
   "effect": {
     "effectType": 4,
     "effectCenter": 8,
-    "effectPos": [3, 9],
+    "effectPos": [1, 7],
     "gridEffect": [{
       "type": "pow",
       "value": 20
@@ -7660,7 +7660,7 @@
   "effect": {
     "effectType": 1,
     "effectCenter": 5,
-    "effectPos": [1, 7],
+    "effectPos": [3, 9],
     "gridEffect": [{
       "type": "coolDown",
       "value": 18
@@ -7698,7 +7698,7 @@
   "effect": {
     "effectType": 2,
     "effectCenter": 8,
-    "effectPos": [1, 4, 7],
+    "effectPos": [3, 6, 9],
     "gridEffect": [{
       "type": "hit",
       "value": 55
@@ -7739,7 +7739,7 @@
   "effect": {
     "effectType": 2,
     "effectCenter": 2,
-    "effectPos": [1, 4, 7],
+    "effectPos": [3, 6, 9],
     "gridEffect": [{
       "type": "hit",
       "value": 25
@@ -7779,8 +7779,8 @@
   },
   "effect": {
     "effectType": 2,
-    "effectCenter": 2,
-    "effectPos": [4],
+    "effectCenter": 5,
+    "effectPos": [6],
     "gridEffect": [{
       "type": "rate",
       "value": 10
@@ -7821,7 +7821,7 @@
   "effect": {
     "effectType": 6,
     "effectCenter": 4,
-    "effectPos": [1, 4],
+    "effectPos": [3, 6],
     "gridEffect": [{
       "type": "pow",
       "value": 15
@@ -7862,7 +7862,7 @@
   "effect": {
     "effectType": 0,
     "effectCenter": 5,
-    "effectPos": [1, 2, 7, 8],
+    "effectPos": [2, 3, 8, 9],
     "gridEffect": [{
       "type": "pow",
       "value": 10
@@ -8193,5 +8193,5 @@
       "value": 10
     }]
   },
-  "krName": "제레 발레"
+  "krName": "제레 발레리"
 }]
