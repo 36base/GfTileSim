@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6aadd043a3548ec49970f461d7802c69
-timeCreated: 1519945526
+timeCreated: 1520078693
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: SpriteAtlasTexture-Common-2048x2048-fmt13_3
     21300008: SpriteAtlasTexture-Common-2048x2048-fmt13_4
     21300010: SpriteAtlasTexture-Common-2048x2048-fmt13_5
+    21300012: SpriteAtlasTexture-Common-2048x2048-fmt13_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -165,8 +166,21 @@ TextureImporter:
         width: 302
         height: 307
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 61, y: 68, z: 65, w: 62}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_6
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 715
+        width: 368
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
