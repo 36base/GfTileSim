@@ -30,14 +30,13 @@ public class LoadingScene : MonoBehaviour
 
         async_operation.allowSceneActivation = false;
 
-        while (!async_operation.isDone)
+        while (async_operation.progress < 0.9f)
         {
             //Debug.Log(async_operation.progress);
             slider.value = async_operation.progress;
             yield return null;
         }
         slider.value = 1f;
-        Debug.Log("hi");
         async_operation.allowSceneActivation = true;
     }
 }
