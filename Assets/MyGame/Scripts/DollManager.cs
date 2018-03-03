@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Text;
 using System.Collections;
@@ -16,16 +17,23 @@ public class DollManager : MonoBehaviour
 
     public string[] AtlasPath;
 
+    public GameObject[] afterLoadingObjects;
+    public GameObject beforeLoadingObject;
+
+    public Slider loadingSlider;
+    public int cutCount = 20;
+
+
     private void Awake()
     {
         Init();
     }
     private void Init()
     {
-        MakeDollData(JsonMapper.ToObject(dollJson.text));
+        StartCoroutine(MakeDollData(JsonMapper.ToObject(dollJson.text)));
     }
 
-    private void MakeDollData(JsonData data)
+    private IEnumerator MakeDollData(JsonData data)
     {
         var count = data.Count;
         var list = new List<DollData>();
@@ -76,6 +84,11 @@ public class DollManager : MonoBehaviour
         }
 
         var sb = new StringBuilder();
+
+        int myCutCount = 0;
+        int totalCount = list.Count * 2;
+        int currCount = 0;
+
         for (int i = 0; i < list.Count; i++)
         {
             sb.Length = 0;
@@ -104,44 +117,70 @@ public class DollManager : MonoBehaviour
             go.SetActive(false);
 
             dollDict.Add(list[i].id, doll);
+
+            //LoadingBar
+            myCutCount++;
+            currCount++;
+            if (myCutCount > cutCount)
+            {
+                myCutCount = 0;
+                loadingSlider.value = (float)currCount / totalCount;
+                yield return null;
+            }
+            //LoadingBar
         }
 
         for (int i = 0; i < AtlasPath.Length; i++)
         {
-            LoadFromAtlas(AtlasPath[i]);
-        }
+            var pics = Resources.LoadAll<Sprite>(AtlasPath[i]);
 
-    }
-
-    private void LoadFromAtlas(string path)
-    {
-        var pics = Resources.LoadAll<Sprite>(path);
-        if (pics == null)
-            return;
-
-        for (int i = 0; i < pics.Length; i++)
-        {
-            int key;
-            Doll doll;
-            //tryparse : false일때 key는 0반환
-            if (Int32.TryParse(pics[i].name, out key))
+            for (int j = 0; j < pics.Length; j++)
             {
-                if (dollDict.TryGetValue(key, out doll))
+                int key;
+                Doll doll;
+                //tryparse : false일때 key는 0반환
+                if (Int32.TryParse(pics[j].name, out key))
                 {
-                    doll.profilePic = pics[i];
-                    SingleTon.instance.dollList.AddContent(doll);
+                    if (dollDict.TryGetValue(key, out doll))
+                    {
+                        doll.profilePic = pics[j];
+                        SingleTon.instance.dollList.AddContent(doll);
+                    }
+                    else
+                    {
+                        Debug.Log("There is no Key " + key);
+                    }
                 }
                 else
                 {
-                    Debug.Log("There is no Key " + key);
+                    Debug.Log("Convert Failed " + pics[j].name);
                 }
-            }
-            else
-            {
-                Debug.Log("Convert Failed " + pics[i].name);
+
+                //LoadingBar
+                myCutCount++;
+                currCount++;
+                if (myCutCount > cutCount)
+                {
+                    myCutCount = 0;
+                    loadingSlider.value = (float)currCount / totalCount;
+                    yield return null;
+                }
+                //LoadingBar
             }
         }
+
+        beforeLoadingObject.SetActive(false);
+        for(int i =0;i<afterLoadingObjects.Length;i++)
+        {
+            afterLoadingObjects[i].SetActive(true);
+        }
+
     }
+
+    //private void LoadFromAtlas(string path)
+    //{
+
+    //}
 
     public void AppExit()
     {
