@@ -109,87 +109,228 @@ public class DollList : UIBackBtnHandle
         }
     }
 
-    public void GunBitFilter(int bit)
+    public void AllFilter()
+    {
+        for (int i = 0; i < elements.Count; i++)
+        {
+            elements[i].go.SetActive(true);
+        }
+        for (int i = 0; i < rareFilterImages.Length; i++)
+        {
+            rareFilterImages[i].color = Color.white;
+        }
+        for (int i = 0; i < gunFilterImages.Length; i++)
+        {
+            gunFilterImages[i].color = Color.white;
+        }
+    }
+
+    public void GunFilter(int bit)
     {
         gunBitFilterValue ^= (1 << bit - 1);
-
-        for (int i = 0; i < 6; i++)
+        if ((gunBitFilterValue & (1 << bit - 1)) > 0)
         {
-            if ((gunBitFilterValue & (1 << i)) > 0)
-            {
-                GunFilter(i + 1, true);
-                gunFilterImages[i].color = Color.yellow;
-            }
-            else
-            {
-                GunFilter(i + 1, false);
-                gunFilterImages[i].color = Color.white;
-            }
-
+            gunFilterImages[bit - 1].color = Color.yellow;
+        }
+        else
+        {
+            gunFilterImages[bit - 1].color = Color.white;
         }
 
-        if (gunBitFilterValue == 0)
-        {
-            for (int i = 1; i < 7; i++)
-            {
-                GunFilter(i, true);
-            }
-        }
+        Filtering();
     }
-
-    private void GunFilter(int type, bool on)
-    {
-        for (int i = 0; i < elements.Count; i++)
-        {
-            if (elements[i].doll.dollData.type == (DollType)type)
-                elements[i].go.SetActive(on);
-        }
-    }
-
-    public void RareBitFilter(int bit)
+    public void RareFilter(int bit)
     {
         rareBitFilterValue ^= (1 << bit - 2);
-
-        for (int i = 0; i < 5; i++)
+        if ((rareBitFilterValue & (1 << bit - 2)) > 0)
         {
-            if ((rareBitFilterValue & (1 << i)) > 0)
-            {
-                RareFilter(i + 2, true);
-                rareFilterImages[i].color = Color.yellow;
-            }
-            else
-            {
-                RareFilter(i + 2, false);
-                rareFilterImages[i].color = Color.white;
-            }
-
+            rareFilterImages[bit - 2].color = Color.yellow;
         }
-
-        if (rareBitFilterValue == 0)
+        else
         {
-            for (int i = 2; i < 7; i++)
-            {
-                RareFilter(i, true);
-            }
+            rareFilterImages[bit - 2].color = Color.white;
         }
+        Filtering();
     }
-
-    private void RareFilter(int rare, bool on)
+    private void Filtering()
     {
+        bool value;
+
         for (int i = 0; i < elements.Count; i++)
         {
-            if(rare != 6)
+            value = false;
+
+            if (gunBitFilterValue == 0)
+                value = true;
+
+            int type = (int)elements[i].doll.dollData.type;
+
+            if ((gunBitFilterValue & (1 << (type - 1))) > 0)
+                value = true;
+
+            if (!value)
             {
-                if (elements[i].doll.dollData.rank == rare)
-                    elements[i].go.SetActive(on);
+                elements[i].go.SetActive(value);
+                continue;
             }
-            else
+
+            value = false;
+
+            if (rareBitFilterValue == 0)
+                value = true;
+
+            int rank = elements[i].doll.dollData.rank;
+
+            if(elements[i].doll.id < 999)
             {
-                if (elements[i].doll.dollData.id > 999)
-                    elements[i].go.SetActive(on);
+                if ((rareBitFilterValue & (1 << (rank - 2))) > 0)
+                    value = true;
             }
+            else if((rareBitFilterValue & (1 << 4)) > 0)
+            {
+                value = true;
+            }
+
+            elements[i].go.SetActive(value);
         }
     }
+
+
+    //private void _Filtering()
+    //{
+    //    bool value;
+
+    //    for (int i = 0; i < elements.Count; i++)
+    //    {
+    //        value = false;
+
+    //        if (gunBitFilterValue == 0)
+    //            value = true;
+    //        else
+    //            for (int j = 1; j < 7; j++)
+    //            {
+    //                if ((gunBitFilterValue & (1 << (j - 1))) > 0)
+    //                {
+    //                    if ((int)elements[i].doll.dollData.type == j)
+    //                    {
+    //                        value = true;
+    //                        break;
+    //                    }
+    //                }
+    //            }
+
+    //        if (!value)
+    //            continue;
+
+    //        value = false;
+
+    //        if (rareBitFilterValue == 0)
+    //            value = true;
+    //        else if ((rareBitFilterValue & (1 << 4)) > 0)
+    //        {
+    //            if (elements[i].doll.id > 999)
+    //            {
+    //                value = true;
+    //            }
+    //        }
+    //        else
+    //            for (int j = 2; j < 6; j++)
+    //            {
+    //                if ((rareBitFilterValue & (1 << (j - 2))) > 0)
+    //                {
+    //                    if (elements[i].doll.dollData.rank == j)
+    //                    {
+    //                        value = true;
+    //                        break;
+    //                    }
+    //                }
+    //            }
+
+    //    }
+    //}
+
+
+    //public void GunBitFilter(int bit)
+    //{
+    //    gunBitFilterValue ^= (1 << bit - 1);
+
+    //    for (int i = 0; i < 6; i++)
+    //    {
+    //        if ((gunBitFilterValue & (1 << i)) > 0)
+    //        {
+    //            GunFilter(i + 1, true);
+    //            gunFilterImages[i].color = Color.yellow;
+    //        }
+    //        else
+    //        {
+    //            GunFilter(i + 1, false);
+    //            gunFilterImages[i].color = Color.white;
+    //        }
+
+    //    }
+
+    //    if (gunBitFilterValue == 0)
+    //    {
+    //        for (int i = 1; i < 7; i++)
+    //        {
+    //            GunFilter(i, true);
+    //        }
+    //    }
+    //}
+
+    //private void GunFilter(int type, bool on)
+    //{
+    //    for (int i = 0; i < elements.Count; i++)
+    //    {
+    //        if (elements[i].doll.dollData.type == (DollType)type)
+    //            elements[i].go.SetActive(on);
+    //    }
+    //}
+
+    //public void RareBitFilter(int bit)
+    //{
+    //    rareBitFilterValue ^= (1 << bit - 2);
+
+    //    for (int i = 0; i < 5; i++)
+    //    {
+    //        if ((rareBitFilterValue & (1 << i)) > 0)
+    //        {
+    //            RareFilter(i + 2, true);
+    //            rareFilterImages[i].color = Color.yellow;
+    //        }
+    //        else
+    //        {
+    //            RareFilter(i + 2, false);
+    //            rareFilterImages[i].color = Color.white;
+    //        }
+
+    //    }
+
+    //    if (rareBitFilterValue == 0)
+    //    {
+    //        for (int i = 2; i < 7; i++)
+    //        {
+    //            RareFilter(i, true);
+    //        }
+    //    }
+    //}
+
+    //private void RareFilter(int rare, bool on)
+    //{
+    //    for (int i = 0; i < elements.Count; i++)
+    //    {
+    //        if (rare != 6)
+    //        {
+    //            if (elements[i].doll.dollData.rank == rare)
+    //                elements[i].go.SetActive(on);
+    //        }
+    //        else
+    //        {
+    //            if (elements[i].doll.dollData.id > 999)
+    //                elements[i].go.SetActive(on);
+    //        }
+    //    }
+    //}
 
     public void NextButton()
     {
@@ -198,17 +339,5 @@ public class DollList : UIBackBtnHandle
         if (filterIndex >= filters.Length)
             filterIndex = 0;
         filters[filterIndex].SetActive(true);
-
-        for(int i =0;i<gunFilterImages.Length;i++)
-        {
-            gunFilterImages[i].color = Color.white;
-        }
-        gunBitFilterValue = 0;
-
-        for (int i = 0; i < rareFilterImages.Length; i++)
-        {
-            rareFilterImages[i].color = Color.white;
-        }
-        rareBitFilterValue = 0;
     }
 }
