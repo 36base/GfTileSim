@@ -65,12 +65,20 @@ public class DollManager : MonoBehaviour
                 arrayCount = data[i]["effect"]["gridEffect"].Count;
                 effect.gridEffects = new Effect.GridEffect[arrayCount];
 
+                var keys = new List<string>(data[i]["effect"]["gridEffect"].Keys);
+
                 for (int j = 0; j < arrayCount; j++)
                 {
-                    effect.gridEffects[j] = new Effect.GridEffect(
-                        data[i]["effect"]["gridEffect"][j]["type"].ToString()
-                        , (int)data[i]["effect"]["gridEffect"][j]["value"]);
+                    effect.gridEffects[j] = new Effect.GridEffect(keys[j]
+                        , (int)data[i]["effect"]["gridEffect"][keys[j]]);
                 }
+
+                //for (int j = 0; j < arrayCount; j++)
+                //{
+                //    effect.gridEffects[j] = new Effect.GridEffect(
+                //        data[i]["effect"]["gridEffect"][j]["type"].ToString()
+                //        , (int)data[i]["effect"]["gridEffect"][j]["value"]);
+                //}
 
                 dolldata.effect = effect;
             }
@@ -130,6 +138,7 @@ public class DollManager : MonoBehaviour
             //LoadingBar
         }
 
+        //LoadFromAtlas
         for (int i = 0; i < AtlasPath.Length; i++)
         {
             var pics = Resources.LoadAll<Sprite>(AtlasPath[i]);
@@ -174,6 +183,7 @@ public class DollManager : MonoBehaviour
         {
             afterLoadingObjects[i].SetActive(true);
         }
+        //Debug.Log(Time.time);
 
     }
 
