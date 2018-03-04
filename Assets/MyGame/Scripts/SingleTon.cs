@@ -12,6 +12,7 @@ public class SingleTon : MonoBehaviour
     public Grid grid;
     public StatusMessage msg;
     public DollDiscripter dollDiscript;
+    public Info info;
 
     [Header("Sprites")]
     public Sprite selectedSprite;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 72c97a586dbe01f4f898221deaebc0cb
-timeCreated: 1519943811
+timeCreated: 1520148625
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -35,6 +35,7 @@ TextureImporter:
     21300056: SpriteAtlasTexture-Tile-1024x1024-fmt4_28
     21300058: SpriteAtlasTexture-Tile-1024x1024-fmt4_29
     21300060: SpriteAtlasTexture-Tile-1024x1024-fmt4_30
+    21300062: SpriteAtlasTexture-Tile-1024x1024-fmt4_31
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -517,6 +518,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Tile-1024x1024-fmt4_31
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 761
+        width: 170
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 96, y: 12, z: 12, w: 15}
       outline: []
       tessellationDetail: 0
     outline: []

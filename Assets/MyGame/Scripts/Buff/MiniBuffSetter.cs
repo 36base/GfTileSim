@@ -13,7 +13,7 @@ public class MiniBuffSetter : MonoBehaviour
 
     public GameObject go;
 
-    private void Start()
+    private void Awake()
     {
         MiniBuffOff();
     }

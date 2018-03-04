@@ -133,6 +133,8 @@ public class Grid : MonoBehaviour
         if (selectedDoll != null && selectedDoll != tiles[num - 1].doll)
             selectedDoll.SetState(Doll.DollState.Idle);
 
+        SingleTon.instance.info.SetInfo(tiles[num - 1].doll);
+
         if (tiles[num - 1].doll == null)
             return;
 

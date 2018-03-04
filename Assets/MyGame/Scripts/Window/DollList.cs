@@ -75,8 +75,10 @@ public class DollList : UIBackBtnHandle
     {
         elements.Sort((a, b) =>
         {
-            var temp_a = (a.doll.dollData.id > 999) ? 4.5 : a.doll.dollData.rank;
-            var temp_b = (b.doll.dollData.id > 999) ? 4.5 : b.doll.dollData.rank;
+            var temp_a = ((a.doll.dollData.id > 999) && (a.doll.dollData.id < 10000))
+            ? 4.5 : a.doll.dollData.rank;
+            var temp_b = ((b.doll.dollData.id > 999) && (b.doll.dollData.id < 10000))
+            ? 4.5 : b.doll.dollData.rank;
 
             if (temp_a > temp_b)
                 return 1 * rareSortValue;
@@ -184,12 +186,12 @@ public class DollList : UIBackBtnHandle
 
             int rank = elements[i].doll.dollData.rank;
 
-            if(elements[i].doll.id < 999)
+            if ((elements[i].doll.id < 999) || (elements[i].doll.id > 10000))
             {
                 if ((rareBitFilterValue & (1 << (rank - 2))) > 0)
                     value = true;
             }
-            else if((rareBitFilterValue & (1 << 4)) > 0)
+            else if ((rareBitFilterValue & (1 << 4)) > 0)
             {
                 value = true;
             }

@@ -7948,5 +7948,159 @@
             }
         },
         "krName": "제레 발레리"
+    },
+    {
+        "id": 10002,
+        "name": "M1911Mod",
+        "rank": 4,
+        "type": 1,
+        "illust": "spirtie",
+        "voice": "Eriko Matsui",
+        "buildTime": 1200,
+        "drop": [ "모든 맵" ],
+        "skins": [],
+        "nick": [ "운메이", "운명이" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 74,
+            "hit": 50,
+            "hp": 73,
+            "pow": 27,
+            "range": 0,
+            "rate": 57,
+            "shield": 0,
+            "speed": 15,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 2, 4, 6, 8 ],
+            "gridEffect": {
+                "rate": 12,
+                "hit": 30
+            }
+        },
+        "krName": "M1911_MOD"
+    },
+    {
+        "id": 10051,
+        "name": "FN49Mod",
+        "rank": 4,
+        "type": 3,
+        "illust": "Bison仓鼠",
+        "voice": "Mami Misaki",
+        "buildTime": 11400,
+        "drop": [ "2-5부터 모든 지역" ],
+        "skins": [],
+        "nick": [ "요요요" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 32,
+            "hit": 61,
+            "hp": 93,
+            "pow": 111,
+            "range": 0,
+            "rate": 32,
+            "shield": 0,
+            "speed": 7,
+            "crit": 40,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 1,
+            "effectCenter": 5,
+            "effectPos": [ 3, 9 ],
+            "gridEffect": {
+                "coolDown": 15
+            }
+        },
+        "krName": "FN-49_MOD"
+    },
+    {
+        "id": 10093,
+        "name": "IDWMod",
+        "rank": 4,
+        "type": 2,
+        "illust": "Ki桑",
+        "voice": "Ito Asuka",
+        "buildTime": 4200,
+        "drop": [ "1-6,1-2e부터 모든 지역" ],
+        "skins": [],
+        "nick": [ "아이디따블류다냐", "아디따" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 85,
+            "hit": 15,
+            "hp": 150,
+            "pow": 26,
+            "range": 0,
+            "rate": 75,
+            "shield": 0,
+            "speed": 12,
+            "crit": 5,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 4,
+            "effectCenter": 5,
+            "effectPos": [ 1, 4, 7 ],
+            "gridEffect": {
+                "dodge": 20,
+                "crit": 10
+            }
+        },
+        "krName": "IDW_MOD"
+    },
+    {
+        "id": 10094,
+        "name": "64typeMod",
+        "rank": 4,
+        "type": 2,
+        "illust": "小迪",
+        "voice": "Saya Horigom",
+        "buildTime": 5100,
+        "drop": [ "0-1", "0-2", "0-3", "0-4", "2-4e", "3-2", "3-3", "3-4", "3-5", "3-6", "3-1e", "3-2e", "3-3e", "3-4e", "4-1", "4-2", "4-3", "4-4", "4-5", "4-6", "4-1e", "4-2e", "4-3e", "4-4e", "5-1", "5-2", "5-3", "5-4", "5-5", "5-6", "5-1e", "5-2e", "5-3e", "5-4e", "7-6", "7-4e", "8-1", "8-2", "8-3", "8-4", "8-5", "8-6", "8-1e", "8-2e", "8-3e", "8-4e" ],
+        "skins": [ "떠돌이 마녀", "물 선녀복" ],
+        "nick": [],
+        "stats": {
+            "armor": 0,
+            "dodge": 65,
+            "hit": 11,
+            "hp": 176,
+            "pow": 27,
+            "range": 0,
+            "rate": 93,
+            "shield": 0,
+            "speed": 12,
+            "crit": 5,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 4,
+            "effectCenter": 5,
+            "effectPos": [ 4 ],
+            "gridEffect": {
+                "rate": 24
+            }
+        },
+        "krName": "64식_MOD"
     }
 ]
