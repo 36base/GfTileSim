@@ -23,9 +23,9 @@ public class SetRes : MonoBehaviour
         Camera camera = GetComponent<Camera>();
 
         // if scaled height is less than current height, add letterbox
-        if (scaleheight < 1.0f)
+        if (scaleheight <= 1.000564f)
         {
-
+            GameObject.Find("PillarBox").gameObject.SetActive(false);
         }
         else // add pillarbox
         {
