@@ -33,7 +33,7 @@ public class DollDiscripter : MonoBehaviour
         go.SetActive(true);
         sb.Length = 0;
         string color;
-        switch(doll.dollData.rank)
+        switch (doll.dollData.rank)
         {
             case 2:
                 color = "#DCEBFF";
@@ -45,7 +45,7 @@ public class DollDiscripter : MonoBehaviour
                 color = "#8AE634";
                 break;
             case 5:
-                if (doll.dollData.id < 1000)
+                if ((doll.dollData.id < 1000) || (doll.dollData.id > 9999))
                     color = "#FFD73C";
                 else
                     color = "#FF98A3";

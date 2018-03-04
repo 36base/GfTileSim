@@ -9,7 +9,8 @@ public class Menu : UIBackBtnHandle
 
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && backBtnHandle)
+        if (Input.GetKeyDown(KeyCode.Escape) && backBtnHandle 
+            && !SingleTon.instance.dollList.isWindow)
         {
             OpenOrClose();
         }

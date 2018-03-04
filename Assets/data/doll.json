@@ -5625,7 +5625,7 @@
         },
         "effect": {
             "effectType": 5,
-            "effectCenter": 3,
+            "effectCenter": 9,
             "effectPos": [ 1, 7 ],
             "gridEffect": {
                 "pow": 18
@@ -6942,7 +6942,7 @@
                 "dodge": 8
             }
         },
-        "krName": "M!2"
+        "krName": "M12"
     },
     {
         "id": 192,
@@ -7516,7 +7516,7 @@
             "effectCenter": 2,
             "effectPos": [ 3, 6, 9 ],
             "gridEffect": {
-                "hit": 25,
+                "pow": 25,
                 "rate": 15
             }
         },
@@ -7941,7 +7941,7 @@
         "effect": {
             "effectType": 5,
             "effectCenter": 6,
-            "effectPos": [ 3, 9 ],
+            "effectPos": [ 1, 7 ],
             "gridEffect": {
                 "pow": 20,
                 "hit": 10
@@ -8102,5 +8102,83 @@
             }
         },
         "krName": "64식_MOD"
+    },
+    {
+        "id": 10055,
+        "name": "M4A1Mod",
+        "rank": 5,
+        "type": 4,
+        "illust": "海猫络合物",
+        "voice": "Haruka Tomatsu",
+        "buildTime": 0,
+        "drop": [ "2-6" ],
+        "skins": [],
+        "nick": [],
+        "stats": {
+            "armor": 0,
+            "dodge": 48,
+            "hit": 48,
+            "hp": 110,
+            "pow": 46,
+            "range": 0,
+            "rate": 79,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 4,
+            "effectCenter": 5,
+            "effectPos": [ 2, 3, 6, 8, 9 ],
+            "gridEffect": {
+                "pow": 20,
+                "crit": 32
+            }
+        },
+        "krName": "M4A1_MOD"
+    },
+    {
+        "id": 10057,
+        "name": "AR15Mod",
+        "rank": 5,
+        "type": 4,
+        "illust": "LIN+",
+        "voice": "Emiri Katou",
+        "buildTime": 0,
+        "drop": [ "3-6" ],
+        "skins": [ "계절학교에 가다" ],
+        "nick": [ "스타" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 2,
+            "effectCenter": 5,
+            "effectPos": [ 3, 6, 9 ],
+            "gridEffect": {
+                "rate": 10,
+                "dodge": 15
+            }
+        },
+        "krName": "ST AR-15_MOD"
     }
 ]
