@@ -8180,5 +8180,120 @@
             }
         },
         "krName": "ST AR-15_MOD"
+    },
+    {
+        "id": 211,
+        "name": "DTASRS",
+        "rank": 5,
+        "type": 3,
+        "illust": "neco",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "3-6" ],
+        "skins": [ "계절학교에 가다" ],
+        "nick": [ "스타" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 1,
+            "effectCenter": 5,
+            "effectPos": [ 3, 6 ],
+            "gridEffect": {
+                "coolDown": 18
+            }
+        },
+        "krName": "SRS"
+    },
+    {
+        "id": 209,
+        "name": "OTs39",
+        "rank": 3,
+        "type": 4,
+        "illust": "neco",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "3-6" ],
+        "skins": [ "계절학교에 가다" ],
+        "nick": [ "스타" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 2,
+            "effectCenter": 5,
+            "effectPos": [ 0 ],
+            "gridEffect": {
+                "dodge": 0
+            }
+        },
+        "krName": "OTs-39"
+    },
+    {
+        "id": 999,
+        "name": "Kalina",
+        "rank": 5,
+        "type": 4,
+        "illust": "neco",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "3-6" ],
+        "skins": [ "계절학교에 가다" ],
+        "nick": [ "스타" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 2, 4, 6, 8 ],
+            "gridEffect": {
+                "pow": -99,
+                "rate": -99
+            }
+        },
+        "krName": "카리나"
     }
 ]
