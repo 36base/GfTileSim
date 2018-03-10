@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SetRes : MonoBehaviour
 {
-#if UNITY_STANDALONE &&!UNITY_EDITOR
-    private void Awake()
-    {
-        Application.targetFrameRate = 60;
-    }
-#endif
+//#if UNITY_STANDALONE &&!UNITY_EDITOR
+//    private void Awake()
+//    {
+//        Application.targetFrameRate = 60;
+//    }
+//#endif
 
     // Use this for initialization
     void Start()

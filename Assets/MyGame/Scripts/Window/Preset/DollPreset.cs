@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DollPreset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class DollPreset : MonoBehaviour
+    , IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
+    public GameObject presetPanel;
+    public GameObject savePanel;
     public GameObject deletePanel;
     public bool pressed;
 
-    public float longTouchTime = 1.5f;
+    public float longTouchTime = 1f;
     private float currTime;
 
     private void Update()
@@ -22,10 +25,6 @@ public class DollPreset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 deletePanel.SetActive(true);
             }
         }
-        else
-        {
-            currTime = 0f;
-        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -35,6 +34,13 @@ public class DollPreset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         pressed = false;
+        currTime = 0f;
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ClosePresetPanel();
+        CloseDeletePanel();
+        CloseSavePanel();
     }
 
     public void Preset2Grid()
@@ -51,8 +57,41 @@ public class DollPreset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         deletePanel.SetActive(false);
     }
-    public void CancelDelete()
+
+
+    public void OpenPresetPanel()
+    {
+        if (savePanel.activeSelf || deletePanel.activeSelf)
+            return;
+        presetPanel.SetActive(true);
+    }
+
+    public void ClosePresetPanel()
+    {
+        presetPanel.SetActive(false);
+    }
+
+    public void OpenSavePanel()
+    {
+        deletePanel.SetActive(false);
+        presetPanel.SetActive(false);
+        savePanel.SetActive(true);
+    }
+    public void CloseSavePanel()
+    {
+        savePanel.SetActive(false);
+    }
+
+    public void OpenDeletePanel()
+    {
+        presetPanel.SetActive(false);
+        savePanel.SetActive(false);
+        deletePanel.SetActive(true);
+    }
+    public void CloseDeletePanel()
     {
         deletePanel.SetActive(false);
     }
+
+
 }

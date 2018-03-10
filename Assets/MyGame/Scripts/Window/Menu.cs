@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class Menu : UIBackBtnHandle
 {
     public Toggle infoToggle;
+    public Toggle soundToggle;
 
     protected override void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && backBtnHandle 
-            && !SingleTon.instance.dollList.isWindow)
+            && !SingleTon.instance.IsWindow)
         {
             OpenOrClose();
         }
@@ -26,6 +27,18 @@ public class Menu : UIBackBtnHandle
         {
             SingleTon.instance.info.go.SetActive(false);
             SingleTon.instance.info.infoOn = false;
+        }
+    }
+
+    public void SetSound()
+    {
+        if (soundToggle.isOn)
+        {
+            SingleTon.instance.mute = false;
+        }
+        else
+        {
+            SingleTon.instance.mute = true;
         }
     }
 }
