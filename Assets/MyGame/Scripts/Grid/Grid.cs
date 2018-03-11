@@ -15,6 +15,8 @@ public class Grid : MonoBehaviour
 
     public event ImageOffHandler AllImageOff;
 
+    public bool lossBuff = false;
+
     private void Update()
     {
         if (SingleTon.instance.dollList.isWindow)
@@ -135,13 +137,18 @@ public class Grid : MonoBehaviour
 
         SingleTon.instance.info.SetInfo(tiles[num - 1].doll);
 
+        selectedDoll = tiles[num - 1].doll;
+
+        if (lossBuff)
+            CalcBuff();
+
         if (tiles[num - 1].doll == null)
             return;
 
         tiles[num - 1].SelectImage();
 
         tiles[num - 1].doll.SetState(Doll.DollState.Selected);
-        selectedDoll = tiles[num - 1].doll;
+
     }
 
     public void PickADoll()
@@ -191,6 +198,12 @@ public class Grid : MonoBehaviour
         {
             if (tiles[i].doll == null)
                 continue;
+
+            if(lossBuff)
+            {
+                if (selectedDoll == tiles[i].doll)
+                    continue;
+            }
 
             var effect = tiles[i].doll.dollData.effect;
             for (int j = 0; j < effect.effectPos.Length; j++)
