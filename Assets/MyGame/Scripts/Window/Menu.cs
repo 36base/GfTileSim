@@ -21,6 +21,13 @@ public class Menu : UIBackBtnHandle
     private void Start()
     {
         Init();
+
+#if UNITY_WEBGL
+        soundToggle.interactable = false;
+        soundToggle.isOn = false;
+        SingleTon.instance.mute = true;
+#endif
+
     }
 
     private void Init()

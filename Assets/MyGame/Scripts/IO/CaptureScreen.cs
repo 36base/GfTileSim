@@ -26,6 +26,11 @@ public class CaptureScreen : MonoBehaviour
             return;
         if (wait)
             return;
+
+#if UNITY_WEBGL
+        SingleTon.instance.msg.SetMsg("WEBGL은 지원하지 않습니다!");
+        return;
+#endif
         currTime = 0f;
         wait = true;
         StartCoroutine(CaptureCor(false));
@@ -36,6 +41,12 @@ public class CaptureScreen : MonoBehaviour
             return;
         if (wait)
             return;
+
+#if UNITY_WEBGL
+        SingleTon.instance.msg.SetMsg("WEBGL은 지원하지 않습니다!");
+        return;
+#endif
+
         currTime = 0f;
         wait = true;
         StartCoroutine(CaptureCor(true));
@@ -131,7 +142,6 @@ public class CaptureScreen : MonoBehaviour
 
         File.WriteAllBytes(path + "/HOXY" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + ".PNG", imageByte);
         SingleTon.instance.msg.SetMsg("screenshot 폴더에 캡쳐 됨!");
-
 #endif
     }
     //public void GalleryRefresh(string fileToRefresh)

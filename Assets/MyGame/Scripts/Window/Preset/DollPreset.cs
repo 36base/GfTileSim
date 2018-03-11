@@ -5,38 +5,38 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DollPreset : MonoBehaviour
-    , IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
     public GameObject presetPanel;
     public GameObject savePanel;
     public GameObject deletePanel;
-    public bool pressed;
 
-    public float longTouchTime = 1f;
-    private float currTime;
+    //public bool pressed;
 
-    private void Update()
-    {
-        if (pressed)
-        {
-            currTime += Time.deltaTime;
-            if (currTime > longTouchTime)
-            {
-                deletePanel.SetActive(true);
-            }
-        }
-    }
+    //public float longTouchTime = 1f;
+    //private float currTime;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        pressed = true;
-    }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        pressed = false;
-        currTime = 0f;
-    }
-    public void OnPointerExit(PointerEventData eventData)
+    //private void Update()
+    //{
+    //    if (pressed)
+    //    {
+    //        currTime += Time.deltaTime;
+    //        if (currTime > longTouchTime)
+    //        {
+    //            deletePanel.SetActive(true);
+    //        }
+    //    }
+    //}
+
+    //public void OnPointerDown(PointerEventData eventData)
+    //{
+    //    pressed = true;
+    //}
+    //public void OnPointerUp(PointerEventData eventData)
+    //{
+    //    pressed = false;
+    //    currTime = 0f;
+    //}
+    public void CloseAllPanel()
     {
         ClosePresetPanel();
         CloseDeletePanel();
@@ -63,6 +63,7 @@ public class DollPreset : MonoBehaviour
     {
         if (savePanel.activeSelf || deletePanel.activeSelf)
             return;
+        SingleTon.instance.dollPresetList.CloseAllPresets();
         presetPanel.SetActive(true);
     }
 

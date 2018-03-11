@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public delegate void ImageOffHandler();
+public delegate void AllOffHandler();
 
 public class Grid : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class Grid : MonoBehaviour
 
     public Doll selectedDoll;
 
-    public event ImageOffHandler AllImageOff;
+    public event AllOffHandler AllImageOff;
 
     public bool lossBuff = false;
 
@@ -45,6 +45,26 @@ public class Grid : MonoBehaviour
 
 
     }
+
+    //New Added
+    //public void SpawnFromPreset(int num, int pos)
+    //{
+    //    if (pos < 1 || pos > 9)
+    //        return;
+
+    //    if (tiles[pos - 1].doll != null)
+    //        Despawn(pos);
+
+    //    Doll doll;
+
+    //    ResetIndiBuff();
+    //    AllImageOff();
+
+    //    if (SingleTon.instance.mgr.dollDict.TryGetValue(num, out doll))
+    //    {
+
+    //    }
+    //}
 
     public void Spawn(Doll doll, DollSelecter.Select selecter)
     {
@@ -115,7 +135,7 @@ public class Grid : MonoBehaviour
             return;
 
         tiles[from - 1].selecter.gridPos = to;
-        
+
         if (tiles[to - 1].selecter != null)
             tiles[to - 1].selecter.gridPos = from;
 
@@ -199,7 +219,7 @@ public class Grid : MonoBehaviour
             if (tiles[i].doll == null)
                 continue;
 
-            if(lossBuff)
+            if (lossBuff)
             {
                 if (selectedDoll == tiles[i].doll)
                     continue;
