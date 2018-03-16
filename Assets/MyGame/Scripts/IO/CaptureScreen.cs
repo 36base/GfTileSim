@@ -26,6 +26,11 @@ public class CaptureScreen : MonoBehaviour
             return;
         if (wait)
             return;
+
+#if UNITY_WEBGL
+        SingleTon.instance.msg.SetMsg("WEBGL은 지원하지 않습니다!");
+        return;
+#endif
         currTime = 0f;
         wait = true;
         StartCoroutine(CaptureCor(false));
@@ -36,11 +41,16 @@ public class CaptureScreen : MonoBehaviour
             return;
         if (wait)
             return;
+
+#if UNITY_WEBGL
+        SingleTon.instance.msg.SetMsg("WEBGL은 지원하지 않습니다!");
+        return;
+#endif
+
         currTime = 0f;
         wait = true;
         StartCoroutine(CaptureCor(true));
     }
-
     IEnumerator CaptureCor(bool share)
     {
         yield return new WaitForEndOfFrame();
@@ -65,6 +75,8 @@ public class CaptureScreen : MonoBehaviour
         imageByte = tex.EncodeToPNG();
 
         DestroyImmediate(tex);
+
+#if UNITY_ANDROID
 
         if (share)
         {
@@ -108,10 +120,30 @@ public class CaptureScreen : MonoBehaviour
                 SingleTon.instance.msg.SetMsg("캡쳐 에러");
             }
         }
+#elif UNITY_EDITOR
+        if (share)
+            SingleTon.instance.msg.SetMsg("PC버전에서 공유기능은 지원되지 않습니다.(캡쳐됨)");
 
+        var path = Application.persistentDataPath + "/screenshot";
 
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        File.WriteAllBytes(path + "/HOXY" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + ".PNG", imageByte);
+        SingleTon.instance.msg.SetMsg("screenshot 폴더에 캡쳐 됨!");
+#elif UNITY_STANDALONE
+        if(share)
+            SingleTon.instance.msg.SetMsg("PC버전에서 공유기능은 지원되지 않습니다.(캡쳐됨)");
+
+        var path = Application.dataPath + "/screenshot";
+
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        File.WriteAllBytes(path + "/HOXY" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + ".PNG", imageByte);
+        SingleTon.instance.msg.SetMsg("screenshot 폴더에 캡쳐 됨!");
+#endif
     }
-
     //public void GalleryRefresh(string fileToRefresh)
     //{
     //    if (Application.platform == RuntimePlatform.Android)

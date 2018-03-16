@@ -26,6 +26,7 @@ public class StatusMessage : MonoBehaviour
     {
         if (locked)
             return;
+        SingleTon.instance.StateSound();
         message.text = msg;
         anim.SetTrigger("On");
         locked = true;

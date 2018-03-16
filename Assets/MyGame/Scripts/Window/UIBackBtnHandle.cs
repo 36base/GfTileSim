@@ -36,6 +36,7 @@ public class UIBackBtnHandle : MonoBehaviour
 
     private void Window(bool value)
     {
+        SingleTon.instance.UISound();
         isWindow = value;
         if (anim != null)
             anim.SetBool("isWindow", value);
