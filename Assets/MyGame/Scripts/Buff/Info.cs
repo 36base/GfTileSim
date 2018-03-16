@@ -66,7 +66,7 @@ public class Info : MonoBehaviour
                 sb.Append(ReturnStatName(doll));
                 break;
             case DollType.SG:
-                sb.Append("<Color=#DAA520>샷건</color> 에게\n");
+                sb.Append("<Color=#DAA520>산탄총</color> 에게\n");
                 sb.Append(ReturnStatName(doll));
                 break;
         }
@@ -147,5 +147,10 @@ public class Info : MonoBehaviour
         }
 
         return sb2.ToString();
+    }
+
+    public void OffInfo()
+    {
+        go.SetActive(false);
     }
 }

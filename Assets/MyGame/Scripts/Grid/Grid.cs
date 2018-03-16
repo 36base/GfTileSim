@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public delegate void ImageOffHandler();
+public delegate void AllOffHandler();
 
 public class Grid : MonoBehaviour
 {
@@ -13,7 +13,9 @@ public class Grid : MonoBehaviour
 
     public Doll selectedDoll;
 
-    public event ImageOffHandler AllImageOff;
+    public event AllOffHandler AllImageOff;
+
+    public bool lossBuff = false;
 
     private void Update()
     {
@@ -43,6 +45,26 @@ public class Grid : MonoBehaviour
 
 
     }
+
+    //New Added
+    //public void SpawnFromPreset(int num, int pos)
+    //{
+    //    if (pos < 1 || pos > 9)
+    //        return;
+
+    //    if (tiles[pos - 1].doll != null)
+    //        Despawn(pos);
+
+    //    Doll doll;
+
+    //    ResetIndiBuff();
+    //    AllImageOff();
+
+    //    if (SingleTon.instance.mgr.dollDict.TryGetValue(num, out doll))
+    //    {
+
+    //    }
+    //}
 
     public void Spawn(Doll doll, DollSelecter.Select selecter)
     {
@@ -113,7 +135,7 @@ public class Grid : MonoBehaviour
             return;
 
         tiles[from - 1].selecter.gridPos = to;
-        
+
         if (tiles[to - 1].selecter != null)
             tiles[to - 1].selecter.gridPos = from;
 
@@ -135,13 +157,18 @@ public class Grid : MonoBehaviour
 
         SingleTon.instance.info.SetInfo(tiles[num - 1].doll);
 
+        selectedDoll = tiles[num - 1].doll;
+
+        if (lossBuff)
+            CalcBuff();
+
         if (tiles[num - 1].doll == null)
             return;
 
         tiles[num - 1].SelectImage();
 
         tiles[num - 1].doll.SetState(Doll.DollState.Selected);
-        selectedDoll = tiles[num - 1].doll;
+
     }
 
     public void PickADoll()
@@ -191,6 +218,12 @@ public class Grid : MonoBehaviour
         {
             if (tiles[i].doll == null)
                 continue;
+
+            if (lossBuff)
+            {
+                if (selectedDoll == tiles[i].doll)
+                    continue;
+            }
 
             var effect = tiles[i].doll.dollData.effect;
             for (int j = 0; j < effect.effectPos.Length; j++)

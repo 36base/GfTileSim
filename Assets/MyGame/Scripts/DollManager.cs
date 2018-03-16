@@ -37,6 +37,9 @@ public class DollManager : MonoBehaviour
     {
         var count = data.Count;
         var list = new List<DollData>();
+
+        var keys = new List<string>();
+
         for (int i = 0; i < count; i++)
         {
             var dolldata = new DollData();
@@ -65,7 +68,8 @@ public class DollManager : MonoBehaviour
                 arrayCount = data[i]["effect"]["gridEffect"].Count;
                 effect.gridEffects = new Effect.GridEffect[arrayCount];
 
-                var keys = new List<string>(data[i]["effect"]["gridEffect"].Keys);
+                keys.Clear();
+                keys.AddRange(data[i]["effect"]["gridEffect"].Keys);
 
                 for (int j = 0; j < arrayCount; j++)
                 {

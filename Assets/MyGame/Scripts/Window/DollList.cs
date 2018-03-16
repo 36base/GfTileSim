@@ -47,6 +47,7 @@ public class DollList : UIBackBtnHandle
         Doll doll;
         if (SingleTon.instance.mgr.dollDict.TryGetValue(num, out doll))
         {
+            SingleTon.instance.info.OffInfo();
             grid.Spawn(doll
                 , SingleTon.instance.dollSelecter.selects[currentSelection - 1]);
         }
