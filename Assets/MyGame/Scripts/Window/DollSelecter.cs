@@ -7,6 +7,7 @@ public class DollSelecter : MonoBehaviour
     [System.Serializable]
     public class Select
     {
+        public int dollNum;
         public int gridPos;
         public Button btn;
         public Image image;

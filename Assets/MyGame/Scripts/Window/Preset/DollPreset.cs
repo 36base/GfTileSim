@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public class DollPreset : MonoBehaviour
 {
     public GameObject presetPanel;
     public GameObject savePanel;
     public GameObject deletePanel;
+    public int presetId;
 
     //public bool pressed;
 
@@ -36,6 +38,7 @@ public class DollPreset : MonoBehaviour
     //    pressed = false;
     //    currTime = 0f;
     //}
+
     public void CloseAllPanel()
     {
         ClosePresetPanel();
@@ -43,14 +46,71 @@ public class DollPreset : MonoBehaviour
         CloseSavePanel();
     }
 
-    public void Preset2Grid()
-    {
+    public void SavePreset()
+    { 
+        string plainText = "";
+        for(int i = 0; i < 5; i++)
+        {
+            int id = SingleTon.instance.dollSelecter.selects[i].dollNum;
+            int pos = SingleTon.instance.dollSelecter.selects[i].gridPos;
+            plainText += "ID" + id + "Pos" + pos;
+        }
 
+        string cipherText = DataManager.Encrypt(plainText);
+
+        FileStream file;
+        if(File.Exists(Application.persistentDataPath + "/PresetInfo.dat"))
+        {
+            file = File.Open(Application.persistentDataPath + "/PresetInfo.dat", FileMode.Open);
+        }
+        else
+        {
+            file = File.Create(Application.persistentDataPath + "/PresetInfo.dat");
+        }
+    
+        StreamReader streamReader = new StreamReader(file);
+        StreamWriter streamWriter = new StreamWriter(file);
+        streamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+        for (int i = 0; i < presetId; i++)
+        {
+            string lineRead = streamReader.ReadLine();
+            if (lineRead == null)
+            {
+                streamWriter.WriteLine();
+            }
+        }
+
+        streamWriter.WriteLine(cipherText);
+        streamWriter.Close();
+        streamReader.Close();
+        file.Close();
+
+        savePanel.SetActive(false);
     }
 
-    public void Grid2Preset()
+    public void LoadPreset()
     {
+        string cipherText = "";
 
+        FileStream file = File.Open(Application.persistentDataPath + "/PresetInfo.dat", FileMode.Open);
+        StreamReader streamReader = new StreamReader(file);
+
+        for (int i = 0; i < presetId; i++)
+        {
+            streamReader.ReadLine();
+        }
+
+        cipherText = streamReader.ReadLine();
+
+        string plainText = DataManager.Decrypt(cipherText);
+
+        streamReader.Close();
+        file.Close();
+
+        //여기에 제대 불러오기 후 Spawn하는 함수를 만들어주세욤
+
+        presetPanel.SetActive(false);
     }
 
     public void DeletePreset()

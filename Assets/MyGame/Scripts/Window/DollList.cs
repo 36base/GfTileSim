@@ -50,6 +50,7 @@ public class DollList : UIBackBtnHandle
             SingleTon.instance.info.OffInfo();
             grid.Spawn(doll
                 , SingleTon.instance.dollSelecter.selects[currentSelection - 1]);
+            SingleTon.instance.dollSelecter.selects[currentSelection - 1].dollNum = doll.id;
         }
         Close();
     }
