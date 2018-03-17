@@ -323,11 +323,12 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public void ResetAll()
+    public void ResetAll(bool showMsg = true)
     {
         ResetIndiBuff();
         AllImageOff();
-        SingleTon.instance.msg.SetMsg("초기화");
+        if(showMsg)
+            SingleTon.instance.msg.SetMsg("초기화");
 
         for (int i = 0; i < tiles.Length; i++)
         {
