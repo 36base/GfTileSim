@@ -39,7 +39,7 @@ public class DollPresetList : UIBackBtnHandle
                 var readLine = sr.ReadLine();
                 if (readLine == null)
                 {
-                    sw.WriteLine();
+                    sw.WriteLine("7qnzva8CTUHjOZeZ0lsGe+nUIkpDaO/FqQHaWAyfUmpUHj5SW+7Ri7fgbx2DXXE1hL8k7xz1pCiWrDpSCWMWfA==");
                 }
                 else
                 {

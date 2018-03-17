@@ -52,7 +52,7 @@ public class DollPreset : MonoBehaviour
     public void SavePreset()
     {
         string plainText = "";
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < dollPics.Length; i++)
         {
             int pos = SingleTon.instance.dollSelecter.selects[i].gridPos;
             int id;
@@ -119,21 +119,30 @@ public class DollPreset : MonoBehaviour
 
     public void DeletePreset()
     {
-        //using (StreamReader streamReader = new StreamReader(file))
-        //using (StreamWriter streamWriter = new StreamWriter(file))
-        //{
-        //    for (int i = 0; i < presetId; i++)
-        //    {
-        //        string lineRead = streamReader.ReadLine();
-        //        if (lineRead == null)
-        //        {
-        //            streamWriter.WriteLine();
-        //        }
-        //    }
-        //    streamWriter.WriteLine();
-        //}
-        //MakePreset("");
-        //deletePanel.SetActive(false);
+        try
+        {
+            if (!File.Exists(Application.persistentDataPath + "/PresetInfo.dat"))
+            {
+                SingleTon.instance.msg.SetMsg("파일이 존재하지 않음");
+                SingleTon.instance.dollPresetList.InitAllPresets();
+            }
+
+            var data = File.ReadAllLines(Application.persistentDataPath + "/PresetInfo.dat");
+
+            data[presetId] = "7qnzva8CTUHjOZeZ0lsGe+nUIkpDaO/FqQHaWAyfUmpUHj5SW+7Ri7fgbx2DXXE1hL8k7xz1pCiWrDpSCWMWfA==";
+            File.WriteAllLines(Application.persistentDataPath + "/PresetInfo.dat", data);
+            for (int i = 0; i < dollPics.Length; i++)
+            {
+                dollPics[i].sprite = SingleTon.instance.nullButtonSprite_dark;
+            }
+        }
+        catch
+        {
+            SingleTon.instance.msg.SetMsg("파일 삭제 오류");
+            GC.Collect();
+        }
+
+        deletePanel.SetActive(false);
     }
 
     public void MakePreset(string plainText)
@@ -174,6 +183,11 @@ public class DollPreset : MonoBehaviour
         {
             SingleTon.instance.ResetAll(false);
 
+            for (int i = 0; i < SingleTon.instance.grid.tiles.Length; i++)
+            {
+                SingleTon.instance.grid.tiles[i].selecter = null;
+            }
+
             for (int i = 0; i < 5; i++)
             {
                 int pos = Convert.ToInt32(plainText[10 + 11 * i] - 48);
@@ -182,6 +196,8 @@ public class DollPreset : MonoBehaviour
                     continue;
                 }
                 SingleTon.instance.dollSelecter.selects[i].gridPos = pos;
+                SingleTon.instance.grid.tiles[pos - 1].selecter 
+                    = SingleTon.instance.dollSelecter.selects[i];
                 sb.Length = 0;
                 sb.Append(plainText[2 + 11 * i]);
                 sb.Append(plainText[3 + 11 * i]);

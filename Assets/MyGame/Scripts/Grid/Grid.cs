@@ -13,7 +13,7 @@ public class Grid : MonoBehaviour
 
     public Doll selectedDoll;
 
-    public event AllOffHandler AllImageOff;
+    public AllOffHandler AllImageOff;
 
     public bool lossBuff = false;
 
@@ -99,6 +99,9 @@ public class Grid : MonoBehaviour
     {
         if (pos - 1 < 0)
             return;
+        if (tiles[pos - 1].doll == null)
+            return;
+
         tiles[pos - 1].doll.Despawn();
         tiles[pos - 1].doll = null;
         tiles[pos - 1].miniBuff.MiniBuffOff();
@@ -325,6 +328,7 @@ public class Grid : MonoBehaviour
 
     public void ResetAll(bool showMsg = true)
     {
+        selectedDoll = null;
         ResetIndiBuff();
         AllImageOff();
         if(showMsg)

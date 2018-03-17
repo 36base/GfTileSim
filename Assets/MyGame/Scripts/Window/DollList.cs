@@ -10,7 +10,7 @@ public class DollList : UIBackBtnHandle
 
     public Transform content;
 
-    public GameObject[] filters;
+    //public GameObject[] filters;
     public int filterIndex = 0;
 
     public int noSortValue = 1;
@@ -50,12 +50,26 @@ public class DollList : UIBackBtnHandle
             SingleTon.instance.info.OffInfo();
             grid.Spawn(doll
                 , SingleTon.instance.dollSelecter.selects[currentSelection - 1]);
-            SingleTon.instance.dollSelecter.selects[currentSelection - 1].dollNum = doll.id;
         }
         Close();
     }
 
+    public void DeSelectDoll()
+    {
+        if (!isWindow)
+            return;
+        if (currentSelection < 1)
+            return;
 
+        SingleTon.instance.info.OffInfo();
+        var select = SingleTon.instance.dollSelecter.selects[currentSelection - 1];
+        grid.Despawn(select.gridPos);
+        select.image.sprite = SingleTon.instance.nullButtonSprite;
+        grid.CalcBuff();
+        grid.CalcIndiBuff(select.gridPos);
+        grid.AllImageOff();
+        Close();
+    }
 
     public void NoSort()
     {
@@ -202,12 +216,12 @@ public class DollList : UIBackBtnHandle
         }
     }
 
-    public void NextButton()
-    {
-        filters[filterIndex].SetActive(false);
-        filterIndex++;
-        if (filterIndex >= filters.Length)
-            filterIndex = 0;
-        filters[filterIndex].SetActive(true);
-    }
+    //public void NextButton()
+    //{
+    //    filters[filterIndex].SetActive(false);
+    //    filterIndex++;
+    //    if (filterIndex >= filters.Length)
+    //        filterIndex = 0;
+    //    filters[filterIndex].SetActive(true);
+    //}
 }

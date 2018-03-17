@@ -10,7 +10,7 @@ public class SingleTon : MonoBehaviour
     {
         get
         {
-            return dollList.isWindow | dollPresetList.isWindow;
+            return dollList.isWindow | dollPresetList.isWindow | presetCodeIField.isWindow ;
         }
     }
 
@@ -18,6 +18,7 @@ public class SingleTon : MonoBehaviour
 
     public DollList dollList;
     public DollPresetList dollPresetList;
+    public PresetCodeInputField presetCodeIField;
     public DollSelecter dollSelecter;
     public Grid grid;
     public StatusMessage msg;
