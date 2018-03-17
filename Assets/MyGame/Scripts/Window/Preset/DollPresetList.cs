@@ -10,6 +10,8 @@ public class DollPresetList : UIBackBtnHandle
 
     public AllOffHandler CloseAllPresets;
 
+    public string[] examples;
+
     private void Awake()
     {
         for (int i = 0; i < presets.Length; i++)
@@ -39,12 +41,20 @@ public class DollPresetList : UIBackBtnHandle
                 var readLine = sr.ReadLine();
                 if (readLine == null)
                 {
-                    sw.WriteLine("7qnzva8CTUHjOZeZ0lsGe+nUIkpDaO/FqQHaWAyfUmpUHj5SW+7Ri7fgbx2DXXE1hL8k7xz1pCiWrDpSCWMWfA==");
+                    if (i < examples.Length)
+                    {
+                        sw.WriteLine(examples[i]);
+                        presets[i].MakePreset(DataManager.Decrypt(examples[i]));
+                    }
+                    else
+                        sw.WriteLine("7qnzva8CTUHjOZeZ0lsGe+nUIkpDaO/FqQHaWAyfUmpUHj5SW+7Ri7fgbx2DXXE1hL8k7xz1pCiWrDpSCWMWfA==");
+
                 }
                 else
                 {
                     presets[i].MakePreset(DataManager.Decrypt(readLine));
                 }
+
             }
 
             sw.Close();
