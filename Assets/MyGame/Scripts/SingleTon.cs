@@ -30,6 +30,7 @@ public class SingleTon : MonoBehaviour
     public Sprite nullSprite;
 
     public Sprite nullButtonSprite;
+    public Sprite nullButtonSprite_dark;
 
     public Sprite[] gunTypeSprites;
     public Sprite[] statTypeSprites;
@@ -67,5 +68,12 @@ public class SingleTon : MonoBehaviour
         if (mute)
             return;
         audioSource.PlayOneShot(uiSound);
+    }
+
+    public void ResetAll(bool showMsg = true)
+    {
+        instance.grid.ResetAll(showMsg);
+        instance.dollSelecter.ResetAll();
+        instance.info.OffInfo();
     }
 }

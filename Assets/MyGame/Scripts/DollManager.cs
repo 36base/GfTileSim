@@ -182,6 +182,9 @@ public class DollManager : MonoBehaviour
             }
         }
 
+        //로드데이터처리 및 프리셋 초기화
+        SingleTon.instance.dollPresetList.InitAllPresets();
+
         beforeLoadingObject.SetActive(false);
         for(int i =0;i<afterLoadingObjects.Length;i++)
         {

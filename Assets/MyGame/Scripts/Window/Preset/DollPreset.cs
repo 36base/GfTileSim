@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using System;
 using System.IO;
+using System.Text;
 
 public class DollPreset : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class DollPreset : MonoBehaviour
     public GameObject savePanel;
     public GameObject deletePanel;
     public int presetId;
+
+    public Image[] dollPics;
 
     //public bool pressed;
 
@@ -47,44 +50,46 @@ public class DollPreset : MonoBehaviour
     }
 
     public void SavePreset()
-    { 
+    {
         string plainText = "";
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            int id = SingleTon.instance.dollSelecter.selects[i].dollNum;
             int pos = SingleTon.instance.dollSelecter.selects[i].gridPos;
-            plainText += "ID" + id + "Pos" + pos;
-        }
+            int id;
+            if (SingleTon.instance.grid.tiles[pos - 1].doll == null)
+            {
+                id = 0;
+                dollPics[i].sprite = SingleTon.instance.nullButtonSprite_dark;
+            }
+            else
+            {
+                id = SingleTon.instance.grid.tiles[pos - 1].doll.id;
+                dollPics[i].sprite = SingleTon.instance.mgr.dollDict[id].profilePic;
+            }
 
+            plainText += "ID" + id.ToString("D5") + "Pos" + pos;
+        }
         string cipherText = DataManager.Encrypt(plainText);
 
-        FileStream file;
-        if(File.Exists(Application.persistentDataPath + "/PresetInfo.dat"))
+        try
         {
-            file = File.Open(Application.persistentDataPath + "/PresetInfo.dat", FileMode.Open);
-        }
-        else
-        {
-            file = File.Create(Application.persistentDataPath + "/PresetInfo.dat");
-        }
-    
-        StreamReader streamReader = new StreamReader(file);
-        StreamWriter streamWriter = new StreamWriter(file);
-        streamReader.BaseStream.Seek(0, SeekOrigin.Begin);
-
-        for (int i = 0; i < presetId; i++)
-        {
-            string lineRead = streamReader.ReadLine();
-            if (lineRead == null)
+            if (!File.Exists(Application.persistentDataPath + "/PresetInfo.dat"))
             {
-                streamWriter.WriteLine();
+                SingleTon.instance.msg.SetMsg("파일이 존재하지 않음");
+                SingleTon.instance.dollPresetList.InitAllPresets();
             }
+
+            var data = File.ReadAllLines(Application.persistentDataPath + "/PresetInfo.dat");
+
+            data[presetId] = cipherText;
+            File.WriteAllLines(Application.persistentDataPath + "/PresetInfo.dat", data);
+        }
+        catch
+        {
+            SingleTon.instance.msg.SetMsg("파일 저장 오류");
+            GC.Collect();
         }
 
-        streamWriter.WriteLine(cipherText);
-        streamWriter.Close();
-        streamReader.Close();
-        file.Close();
 
         savePanel.SetActive(false);
     }
@@ -93,31 +98,118 @@ public class DollPreset : MonoBehaviour
     {
         string cipherText = "";
 
-        FileStream file = File.Open(Application.persistentDataPath + "/PresetInfo.dat", FileMode.Open);
-        StreamReader streamReader = new StreamReader(file);
-
-        for (int i = 0; i < presetId; i++)
+        using (StreamReader streamReader
+            = new StreamReader(Application.persistentDataPath + "/PresetInfo.dat"))
         {
-            streamReader.ReadLine();
+            for (int i = 0; i < presetId; i++)
+            {
+                streamReader.ReadLine();
+            }
+
+            cipherText = streamReader.ReadLine();
+            string plainText = DataManager.Decrypt(cipherText);
+
+            DataToGrid(plainText);
+
+            streamReader.Close();
         }
-
-        cipherText = streamReader.ReadLine();
-
-        string plainText = DataManager.Decrypt(cipherText);
-
-        streamReader.Close();
-        file.Close();
-
-        //여기에 제대 불러오기 후 Spawn하는 함수를 만들어주세욤
 
         presetPanel.SetActive(false);
     }
 
     public void DeletePreset()
     {
-        deletePanel.SetActive(false);
+        //using (StreamReader streamReader = new StreamReader(file))
+        //using (StreamWriter streamWriter = new StreamWriter(file))
+        //{
+        //    for (int i = 0; i < presetId; i++)
+        //    {
+        //        string lineRead = streamReader.ReadLine();
+        //        if (lineRead == null)
+        //        {
+        //            streamWriter.WriteLine();
+        //        }
+        //    }
+        //    streamWriter.WriteLine();
+        //}
+        //MakePreset("");
+        //deletePanel.SetActive(false);
     }
 
+    public void MakePreset(string plainText)
+    {
+        StringBuilder sb = new StringBuilder();
+        if (plainText.Length == 55)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                sb.Length = 0;
+                sb.Append(plainText[2 + 11 * i]);
+                sb.Append(plainText[3 + 11 * i]);
+                sb.Append(plainText[4 + 11 * i]);
+                sb.Append(plainText[5 + 11 * i]);
+                sb.Append(plainText[6 + 11 * i]);
+                int num;
+                num = Convert.ToInt32(sb.ToString());
+                Doll doll;
+                if (SingleTon.instance.mgr.dollDict.TryGetValue(num, out doll))
+                {
+                    dollPics[i].sprite = doll.profilePic;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                dollPics[i].sprite = SingleTon.instance.nullButtonSprite_dark;
+            }
+        }
+    }
+
+    public void DataToGrid(string plainText)
+    {
+        StringBuilder sb = new StringBuilder();
+        if (plainText.Length == 55)
+        {
+            SingleTon.instance.ResetAll(false);
+
+            for (int i = 0; i < 5; i++)
+            {
+                int pos = Convert.ToInt32(plainText[10 + 11 * i] - 48);
+                if (pos < 1 || pos > 9)
+                {
+                    continue;
+                }
+                SingleTon.instance.dollSelecter.selects[i].gridPos = pos;
+                sb.Length = 0;
+                sb.Append(plainText[2 + 11 * i]);
+                sb.Append(plainText[3 + 11 * i]);
+                sb.Append(plainText[4 + 11 * i]);
+                sb.Append(plainText[5 + 11 * i]);
+                sb.Append(plainText[6 + 11 * i]);
+                int num;
+                num = Convert.ToInt32(sb.ToString());
+                if (num == 0)
+                    continue;
+
+                Doll doll;
+                if (SingleTon.instance.mgr.dollDict.TryGetValue(num, out doll))
+                {
+                    SingleTon.instance.grid.Spawn(doll
+                        , SingleTon.instance.dollSelecter.selects[i]);
+                }
+                else
+                {
+                    SingleTon.instance.msg.SetMsg("인형 번호 오류");
+                }
+            }
+        }
+        else
+        {
+            SingleTon.instance.msg.SetMsg("불러올 데이터가 없습니다!");
+        }
+    }
 
     public void OpenPresetPanel()
     {
@@ -153,6 +245,4 @@ public class DollPreset : MonoBehaviour
     {
         deletePanel.SetActive(false);
     }
-
-
 }
