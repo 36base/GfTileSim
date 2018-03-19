@@ -5,7 +5,6 @@ public class SingleTon : MonoBehaviour
 {
     public static SingleTon instance;
 
-    private bool isWindow;//메뉴 제외 윈도우 확인.
     public bool IsWindow
     {
         get

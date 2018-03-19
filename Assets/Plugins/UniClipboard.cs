@@ -7,8 +7,10 @@ public class UniClipboard
     static IBoard board{
         get{
             if (_board == null) {
-                #if UNITY_EDITOR
+                #if UNITY_EDITOR || UNITY_STANDALONE
                 _board = new EditorBoard();
+                #elif UNITY_WEBGL
+                _board = new WebGLBoard();
                 #elif UNITY_ANDROID
                 _board = new AndroidBoard();
                 #elif UNITY_IOS
@@ -43,6 +45,26 @@ class EditorBoard : IBoard {
         return GUIUtility.systemCopyBuffer;
     }
 }
+
+#if UNITY_WEBGL
+class WebGLBoard : IBoard
+{
+    TextEditor te = new TextEditor();
+    public string GetText()
+    {
+        if(te.Paste())
+            te.SelectAll();
+        return te.text;
+    }
+
+    public void SetText(string str)
+    {
+        te.text = str;
+        te.SelectAll();
+        te.Copy();
+    }
+}
+#endif
 
 #if UNITY_IOS
 class IOSBoard : IBoard {

@@ -89,7 +89,9 @@ public class DollPreset : MonoBehaviour
             SingleTon.instance.msg.SetMsg("파일 저장 오류");
             GC.Collect();
         }
-
+#if UNITY_WEBGL
+        SingleTon.instance.msg.SetMsg("Web플레이어 종료 시 데이터가 삭제됩니다!");
+#endif
 
         savePanel.SetActive(false);
     }

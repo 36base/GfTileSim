@@ -19,8 +19,10 @@ public class Grid : MonoBehaviour
 
     private void Update()
     {
-        if (SingleTon.instance.dollList.isWindow)
+        if (SingleTon.instance.dollList.isWindow 
+            || SingleTon.instance.presetCodeIField.isWindow)
             return;
+
 
         if (Input.GetMouseButtonUp(0))
         {
