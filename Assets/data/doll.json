@@ -8223,7 +8223,7 @@
         "id": 209,
         "name": "OTs39",
         "rank": 3,
-        "type": 4,
+        "type": 2,
         "illust": "neco",
         "voice": "/",
         "buildTime": 0,
@@ -8248,11 +8248,11 @@
             "bullet": 0
         },
         "effect": {
-            "effectType": 2,
+            "effectType": 4,
             "effectCenter": 5,
-            "effectPos": [ 0 ],
+            "effectPos": [ 4, 7 ],
             "gridEffect": {
-                "dodge": 0
+                "pow": 16
             }
         },
         "krName": "OTs-39"
