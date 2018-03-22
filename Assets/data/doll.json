@@ -8364,7 +8364,7 @@
             "bullet": 0
         },
         "effect": {
-            "effectType": 1,
+            "effectType": 0,
             "effectCenter": 5,
             "effectPos": [ 1, 2, 4, 6, 7, 8 ],
             "gridEffect": {
