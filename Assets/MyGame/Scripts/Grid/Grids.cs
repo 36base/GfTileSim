@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System;
 
 public delegate void AllOffHandler();
 
-public class Grid : MonoBehaviour
+public class Grids : MonoBehaviour, IPointerDownHandler, IPointerUpHandler//, IPointerExitHandler
 {
     public Tile[] tiles;
 
@@ -23,7 +25,6 @@ public class Grid : MonoBehaviour
             || SingleTon.instance.presetCodeIField.isWindow)
             return;
 
-
         if (Input.GetMouseButtonUp(0))
         {
             DropADoll();
@@ -35,16 +36,34 @@ public class Grid : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (!EventSystem.current.IsPointerOverGameObject() || (EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject != null))
+            {
+                //SelectTile(mousePos);
+                foreach(var i in tiles)
+                {
+                    if(i.doll == null)
+                    {
+                        mousePos = Int32.Parse(i.name);
+                        break;
+                    }
+                }
+                SelectTile(mousePos);
+                mousePos = 0;
+                return;
+            }
+
             SelectTile(mousePos);
+            
             //Debug.Log("Down");
         }
 
         if (Input.GetMouseButton(0))
         {
-            PickADoll();
+            if(EventSystem.current.IsPointerOverGameObject())
+                PickADoll();
             //Debug.Log("Drag");
         }
-
+        
 
     }
 
@@ -151,7 +170,7 @@ public class Grid : MonoBehaviour
 
     public void SelectTile(int num)
     {
-        if (num < 1)
+        if (num < mousePos)
             return;
         AllImageOff();
 
@@ -374,4 +393,46 @@ public class Grid : MonoBehaviour
         else
             return value;
     }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        string data = eventData.pointerCurrentRaycast.gameObject.name;
+
+        if (!data.Equals("Grids") && EventSystem.current.IsPointerOverGameObject())
+        {
+            mousePos = Int32.Parse(data);
+        }
+        //Debug.Log(data);
+        //throw new System.NotImplementedException();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        try
+        {
+            string data = eventData.pointerCurrentRaycast.gameObject.name;
+            if (mousePos != 0 && !data.Equals("Grids"))
+            {
+                mousePos = Int32.Parse(data);
+            }
+            //Debug.Log(data);
+        }
+        catch(NullReferenceException)
+        {
+            
+        }
+        //throw new System.NotImplementedException();
+    }
+
+    /*
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(eventData.eligibleForClick)
+        {
+            DropADoll();
+            SelectTile(mousePos);
+        }
+        //throw new NotImplementedException();
+    }
+    */
 }

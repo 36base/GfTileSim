@@ -19,7 +19,7 @@ public class SingleTon : MonoBehaviour
     public DollPresetList dollPresetList;
     public PresetCodeInputField presetCodeIField;
     public DollSelecter dollSelecter;
-    public Grid grid;
+    public Grids grid;
     public StatusMessage msg;
     public DollDiscripter dollDiscript;
     public Info info;

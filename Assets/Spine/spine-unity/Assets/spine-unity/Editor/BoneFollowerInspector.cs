@@ -86,7 +86,7 @@ public class BoneFollowerInspector : Editor {
 
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Bone");
-			EditorGUIUtility.LookLikeControls();
+            //EditorGUIUtility.LookLikeControls();
 			boneIndex = EditorGUILayout.Popup(boneIndex, bones);
 			EditorGUILayout.EndHorizontal();
 

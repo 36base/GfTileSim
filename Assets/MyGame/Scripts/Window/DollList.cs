@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class DollList : UIBackBtnHandle
 {
     public GameObject dollButtonPrefab;
-    public Grid grid;
+    public Grids grid;
 
     public Transform content;
 
