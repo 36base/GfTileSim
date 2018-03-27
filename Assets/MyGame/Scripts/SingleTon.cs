@@ -5,10 +5,44 @@ public class SingleTon : MonoBehaviour
 {
     public static SingleTon instance;
 
+    public bool IsWindow
+    {
+        get
+        {
+            return dollList.isWindow | dollPresetList.isWindow | presetCodeIField.isWindow ;
+        }
+    }
+
     public DollManager mgr;
 
     public DollList dollList;
+    public DollPresetList dollPresetList;
+    public PresetCodeInputField presetCodeIField;
     public DollSelecter dollSelecter;
+    public Grid grid;
+    public StatusMessage msg;
+    public DollDiscripter dollDiscript;
+    public Info info;
+
+    [Header("Sprites")]
+    public Sprite selectedSprite;
+    public Sprite buffSprite;
+    public Sprite nullSprite;
+
+    public Sprite nullButtonSprite;
+    public Sprite nullButtonSprite_dark;
+
+    public Sprite[] gunTypeSprites;
+    public Sprite[] statTypeSprites;
+    [Header("Prefabs")]
+    public GameObject buffPrefab;
+    public GameObject indiBuffPrefab;
+
+    [Header("Sounds")]
+    public bool mute;
+    public AudioSource audioSource;
+    public AudioClip uiSound;
+    public AudioClip stateSound;
 
     void Awake()
     {
@@ -20,6 +54,26 @@ public class SingleTon : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    public void StateSound()
+    {
+        if (mute)
+            return;
+        audioSource.PlayOneShot(stateSound);
+    }
+
+    public void UISound()
+    {
+        if (mute)
+            return;
+        audioSource.PlayOneShot(uiSound);
+    }
+
+    public void ResetAll(bool showMsg = true)
+    {
+        instance.grid.ResetAll(showMsg);
+        instance.dollSelecter.ResetAll();
+        instance.info.OffInfo();
     }
 }

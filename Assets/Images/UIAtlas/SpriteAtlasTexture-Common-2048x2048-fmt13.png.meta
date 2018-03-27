@@ -1,17 +1,25 @@
 fileFormatVersion: 2
 guid: 6aadd043a3548ec49970f461d7802c69
-timeCreated: 1519568283
+timeCreated: 1520582439
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: SpriteAtlasTexture-Common-2048x2048-fmt13_0
     21300002: SpriteAtlasTexture-Common-2048x2048-fmt13_1
-  serializedVersion: 2
+    21300004: SpriteAtlasTexture-Common-2048x2048-fmt13_2
+    21300006: SpriteAtlasTexture-Common-2048x2048-fmt13_3
+    21300008: SpriteAtlasTexture-Common-2048x2048-fmt13_4
+    21300010: SpriteAtlasTexture-Common-2048x2048-fmt13_5
+    21300012: SpriteAtlasTexture-Common-2048x2048-fmt13_6
+    21300014: SpriteAtlasTexture-Common-2048x2048-fmt13_7
+    21300016: SpriteAtlasTexture-Common-2048x2048-fmt13_8
+    21300018: SpriteAtlasTexture-Common-2048x2048-fmt13_9
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -23,10 +31,8 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -37,7 +43,6 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -46,9 +51,47 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -64,6 +107,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 149, y: 47, z: 44, w: 43}
       outline: []
+      tessellationDetail: -1
     - serializedVersion: 2
       name: SpriteAtlasTexture-Common-2048x2048-fmt13_1
       rect:
@@ -76,6 +120,98 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_2
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1021
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_3
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 441
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_4
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1660
+        width: 77
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 48, z: 19, w: 15}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_5
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 445
+        width: 302
+        height: 307
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 61, y: 68, z: 65, w: 62}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_6
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 715
+        width: 368
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_7
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 1393
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpriteAtlasTexture-Common-2048x2048-fmt13_8
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1207
+        width: 267
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 15, y: 37, z: 40, w: 40}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

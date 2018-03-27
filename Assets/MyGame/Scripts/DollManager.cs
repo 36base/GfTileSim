@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,57 +15,92 @@ public class DollManager : MonoBehaviour
 
     public Dictionary<int, Doll> dollDict = new Dictionary<int, Doll>();
 
+    public string[] AtlasPath;
+
+    public GameObject[] afterLoadingObjects;
+    public GameObject beforeLoadingObject;
+
+    public Slider loadingSlider;
+    public int cutCount = 20;
+
+
     private void Awake()
     {
         Init();
     }
     private void Init()
     {
-        MakeDollData(JsonMapper.ToObject(dollJson.text));
+        StartCoroutine(MakeDollData(JsonMapper.ToObject(dollJson.text)));
     }
 
-    private void MakeDollData(JsonData data)
+    private IEnumerator MakeDollData(JsonData data)
     {
         var count = data.Count;
         var list = new List<DollData>();
+
+        var keys = new List<string>();
+
         for (int i = 0; i < count; i++)
         {
             var dolldata = new DollData();
-
-            dolldata.id = (int)data[i]["id"];
-            dolldata.name = data[i]["name"].ToString();
-            dolldata.rank = (int)data[i]["rank"];
-            dolldata.type = (DollType)(int)data[i]["type"];
-
-
-            var effect = new Effect();
-
-            effect.effectType = (DollType)(int)data[i]["effect"]["effectType"];
-            effect.effectCenter = (int)data[i]["effect"]["effectCenter"];
-
-            var arrayCount = data[i]["effect"]["effectPos"].Count;
-            effect.effectPos = new int[arrayCount];
-
-            for (int j = 0; j < arrayCount; j++)
+            try
             {
-                effect.effectPos[j] = (int)data[i]["effect"]["effectPos"][j];
-            }
-            effect.gridEffects = new List<Effect.GridEffect>();
+                dolldata.id = (int)data[i]["id"];
+                dolldata.name = data[i]["name"].ToString();
+                dolldata.krName = data[i]["krName"].ToString();
+                dolldata.rank = (int)data[i]["rank"];
+                dolldata.type = (DollType)(int)data[i]["type"];
 
-            for (int j = 0; j < data[i]["effect"]["gridEffect"].Count; j++)
+
+                var effect = new Effect();
+
+                effect.effectType = (DollType)(int)data[i]["effect"]["effectType"];
+                effect.effectCenter = (int)data[i]["effect"]["effectCenter"];
+
+                var arrayCount = data[i]["effect"]["effectPos"].Count;
+                effect.effectPos = new int[arrayCount];
+
+                for (int j = 0; j < arrayCount; j++)
+                {
+                    effect.effectPos[j] = (int)data[i]["effect"]["effectPos"][j];
+                }
+
+                arrayCount = data[i]["effect"]["gridEffect"].Count;
+                effect.gridEffects = new Effect.GridEffect[arrayCount];
+
+                keys.Clear();
+                keys.AddRange(data[i]["effect"]["gridEffect"].Keys);
+
+                for (int j = 0; j < arrayCount; j++)
+                {
+                    effect.gridEffects[j] = new Effect.GridEffect(keys[j]
+                        , (int)data[i]["effect"]["gridEffect"][keys[j]]);
+                }
+
+                //for (int j = 0; j < arrayCount; j++)
+                //{
+                //    effect.gridEffects[j] = new Effect.GridEffect(
+                //        data[i]["effect"]["gridEffect"][j]["type"].ToString()
+                //        , (int)data[i]["effect"]["gridEffect"][j]["value"]);
+                //}
+
+                dolldata.effect = effect;
+            }
+            catch
             {
-                effect.gridEffects.Add(new Effect.GridEffect(
-                    data[i]["effect"]["gridEffect"][j]["type"].ToString()
-                    , (int)data[i]["effect"]["gridEffect"][j]["value"]));
+                Debug.Log("Wrong json data " + i);
+                continue;
             }
-
-            dolldata.effect = effect;
 
             list.Add(dolldata);
         }
 
-
         var sb = new StringBuilder();
+
+        int myCutCount = 0;
+        int totalCount = list.Count * 2;
+        int currCount = 0;
+
         for (int i = 0; i < list.Count; i++)
         {
             sb.Length = 0;
@@ -79,8 +116,8 @@ public class DollManager : MonoBehaviour
                 Debug.Log("Null " + list[i].name);
                 continue;
             }
-            var go = Instantiate(dollPrefab, dollPool.position, Quaternion.identity)
-                as GameObject;
+
+            var go = Instantiate(dollPrefab, dollPool.position, Quaternion.identity);
             var doll = go.GetComponent<Doll>();
             doll.tr.SetParent(dollPool, false);
 
@@ -88,11 +125,82 @@ public class DollManager : MonoBehaviour
             doll.dollData = list[i];
             doll.skelAnim.skeletonDataAsset = skel;
             doll.skelAnim.Reset();
+
             go.SetActive(false);
 
             dollDict.Add(list[i].id, doll);
 
-            SingleTon.instance.dollList.AddContent(doll);
+            //LoadingBar
+            myCutCount++;
+            currCount++;
+            if (myCutCount > cutCount)
+            {
+                myCutCount = 0;
+                loadingSlider.value = (float)currCount / totalCount;
+                yield return null;
+            }
+            //LoadingBar
         }
+
+        //LoadFromAtlas
+        for (int i = 0; i < AtlasPath.Length; i++)
+        {
+            var pics = Resources.LoadAll<Sprite>(AtlasPath[i]);
+
+            for (int j = 0; j < pics.Length; j++)
+            {
+                int key;
+                Doll doll;
+                //tryparse : false일때 key는 0반환
+                if (Int32.TryParse(pics[j].name, out key))
+                {
+                    if (dollDict.TryGetValue(key, out doll))
+                    {
+                        doll.profilePic = pics[j];
+                        SingleTon.instance.dollList.AddContent(doll);
+                    }
+                    else
+                    {
+                        Debug.Log("There is no Key " + key);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Convert Failed " + pics[j].name);
+                }
+
+                //LoadingBar
+                myCutCount++;
+                currCount++;
+                if (myCutCount > cutCount)
+                {
+                    myCutCount = 0;
+                    loadingSlider.value = (float)currCount / totalCount;
+                    yield return null;
+                }
+                //LoadingBar
+            }
+        }
+
+        //로드데이터처리 및 프리셋 초기화
+        SingleTon.instance.dollPresetList.InitAllPresets();
+
+        beforeLoadingObject.SetActive(false);
+        for(int i =0;i<afterLoadingObjects.Length;i++)
+        {
+            afterLoadingObjects[i].SetActive(true);
+        }
+        //Debug.Log(Time.time);
+
+    }
+
+    //private void LoadFromAtlas(string path)
+    //{
+
+    //}
+
+    public void AppExit()
+    {
+        Application.Quit();
     }
 }
