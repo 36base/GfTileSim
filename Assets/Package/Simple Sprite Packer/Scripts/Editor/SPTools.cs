@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using System.Reflection;
 using SimpleSpritePacker;
+using UnityEditor.SceneManagement;
 
 namespace SimpleSpritePackerEditor
 {
@@ -116,7 +117,7 @@ namespace SimpleSpritePackerEditor
 			if (System.IO.File.Exists(path))
 			{
 				#if !UNITY_4_1 && !UNITY_4_0 && !UNITY_3_5
-				if (!AssetDatabase.IsOpenForEdit(path))
+				if (!AssetDatabase.IsOpenForEdit(path, StatusQueryOptions.UseCachedIfPossible))
 				{
 					Debug.LogError(path + " is not editable. Did you forget to do a check out?");
 					return false;
@@ -166,14 +167,15 @@ namespace SimpleSpritePackerEditor
 				return false;
 			
 			TextureImporterSettings settings = new TextureImporterSettings();
+            TextureImporterPlatformSettings set = new TextureImporterPlatformSettings();
 			textureImporter.ReadTextureSettings(settings);
 			
 			settings.spriteMode = 2;
 			settings.readable = false;
-			settings.maxTextureSize = 4096;
+			set.maxTextureSize = 4096;
 			settings.wrapMode = TextureWrapMode.Clamp;
 			settings.npotScale = TextureImporterNPOTScale.ToNearest;
-			settings.textureFormat = TextureImporterFormat.ARGB32;
+			set.format = TextureImporterFormat.ARGB32;
 			settings.filterMode = FilterMode.Point;
 			settings.aniso = 4;
 			settings.alphaIsTransparency = alphaTransparency;
@@ -269,11 +271,11 @@ namespace SimpleSpritePackerEditor
 			
 			if (ti == null)
 				return false;
-			
+
+            TextureImporterPlatformSettings set = new TextureImporterPlatformSettings();
 			TextureImporterSettings settings = new TextureImporterSettings();
 			ti.ReadTextureSettings(settings);
-			
-			settings.textureFormat = format;
+			set.format = format;
 			ti.SetTextureSettings(settings);
 			SPTools.DoAssetReimport(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 
@@ -610,9 +612,9 @@ namespace SimpleSpritePackerEditor
 		{
 			int count = 0;
 			bool replaceAtlas = (replaceMode == SPReferenceReplacerWindow.ReplaceMode.AtlasWithSource);
-			
-			// Grab the current scene name
-			string startingScene = EditorApplication.currentScene;
+
+            // Grab the current scene name
+            string startingScene = EditorSceneManager.GetActiveScene().name; //EditorApplication.currentScene;
 			
 			// Get all scene names
 			string[] sceneNames = SPTools.GetAllScenesNames();
@@ -627,7 +629,7 @@ namespace SimpleSpritePackerEditor
 					continue;
 				
 				// Try opening the scene
-				if (EditorApplication.OpenScene(sceneName))
+				if (EditorSceneManager.OpenScene(sceneName).IsValid())
 				{
 					Component[] comps = Object.FindObjectsOfType<Component>();
 					
@@ -639,12 +641,14 @@ namespace SimpleSpritePackerEditor
 						count += SPTools.ReplaceReferences(comps, (replaceAtlas ? spriteInfo.targetSprite : (spriteInfo.source as Sprite)), (replaceAtlas ? (spriteInfo.source as Sprite) : spriteInfo.targetSprite), spriteRenderersOnly);
 					}
 					
-					EditorApplication.SaveScene();
+					//EditorApplication.SaveScene();
+                    EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByName(sceneName));
 				}
 			}
 			
 			// Load back the original scene
-			EditorApplication.OpenScene(startingScene);
+			//EditorApplication.OpenScene(startingScene);
+            EditorSceneManager.OpenScene(startingScene);
 			
 			// Return the replaced references count
 			return count;

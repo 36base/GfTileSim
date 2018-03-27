@@ -8295,5 +8295,161 @@
             }
         },
         "krName": "카리나"
+    },
+    {
+        "id": 216,
+        "name": "XM8",
+        "rank": 4,
+        "type": 4,
+        "illust": "",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "" ],
+        "skins": [ "" ],
+        "nick": [ "" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 2,
+            "effectCenter": 5,
+            "effectPos": [ 9 ],
+            "gridEffect": {
+                "pow": 20,
+                "dodge": 15
+            }
+        },
+        "krName": "XM8"
+    },
+    {
+        "id": 212,
+        "name": "K5",
+        "rank": 4,
+        "type": 1,
+        "illust": "",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "" ],
+        "skins": [ "" ],
+        "nick": [ "" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 1, 2, 4, 6, 7, 8 ],
+            "gridEffect": {
+                "pow": 15,
+                "hit": 20
+            }
+        },
+        "krName": "K5"
+    },
+    {
+        "id": 215,
+        "name": "MDR",
+        "rank": 5,
+        "type": 4,
+        "illust": "",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "" ],
+        "skins": [ "" ],
+        "nick": [ "" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 2,
+            "effectCenter": 5,
+            "effectPos": [ 3, 6 ],
+            "gridEffect": {
+                "pow": 25,
+                "hit": 65
+            }
+        },
+        "krName": "MDR"
+    },
+    {
+        "id": 213,
+        "name": "CBJMS",
+        "rank": 5,
+        "type": 2,
+        "illust": "",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "" ],
+        "skins": [ "" ],
+        "nick": [ "" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 4,
+            "effectCenter": 5,
+            "effectPos": [ 1, 4, 7 ],
+            "gridEffect": {
+                "pow": 15,
+                "rate": 5
+            }
+        },
+        "krName": "C-MS"
     }
 ]

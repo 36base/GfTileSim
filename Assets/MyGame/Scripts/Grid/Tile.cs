@@ -35,6 +35,7 @@ public class Tile : MonoBehaviour
     private void OnMouseExit()
     {
         //Debug.Log("Exit " + tileNum);
+        //Grids.mousePos = 0;
         SingleTon.instance.grid.mousePos = 0;
     }
 
