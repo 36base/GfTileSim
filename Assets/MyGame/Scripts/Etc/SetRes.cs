@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 기준해상도 19:6 비율 이하일 경우 필러박스비활성,
+/// 19:6비율 이상일 경우 필러박스보임
+/// </summary>
 public class SetRes : MonoBehaviour
 {
 //#if UNITY_STANDALONE &&!UNITY_EDITOR

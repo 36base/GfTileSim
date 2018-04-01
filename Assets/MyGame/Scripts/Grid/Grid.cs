@@ -3,18 +3,39 @@ using System.Collections;
 
 public delegate void AllOffHandler();
 
+
+/// <summary>
+/// 타일 9개를 배열로 관리하는 클래스
+/// </summary>
 public class Grid : MonoBehaviour
 {
+    /// <summary>
+    /// 배열의 순서는 키패드순서
+    /// </summary>
     public Tile[] tiles;
 
+    /// <summary>
+    /// 현재 클릭또는 터치로 선택하고있는 인형의 위치
+    /// </summary>
     public int pickedDoll = 0;
 
+    /// <summary>
+    /// 현재 포인터(터치포함)의 타일 위 위치(1~9), 타일이 아니면 위치는 0
+    /// </summary>
     public int mousePos = 0;
 
+    /// <summary>
+    /// 선택한 인형의 참조
+    /// </summary>
     public Doll selectedDoll;
 
+    /// <summary>
+    /// 초기화 시 타일에 발생하는 이미지를 전부 비활성(선택, 버프 등)하는 함수를 체인
+    /// </summary>
     public AllOffHandler AllImageOff;
-
+    /// <summary>
+    /// 인게임과 같이 선택한 인형 버프를 감소할건가? 옵션에서 체크가능
+    /// </summary>
     public bool lossBuff = false;
 
     private void Update()
@@ -68,32 +89,47 @@ public class Grid : MonoBehaviour
     //    }
     //}
 
+    /// <summary>
+    /// 인형 스폰
+    /// </summary>
+    /// <param name="doll"></param>
+    /// <param name="selecter">인형을 스폰하는 셀렉터</param>
     public void Spawn(Doll doll, DollSelecter.Select selecter)
     {
-        if (selecter.gridPos - 1 < 0)
+        if (selecter.gridPos - 1< 0)
             return;
+        //셀렉터가 가르키는 타일에 이미 인형이 있으면 해당 타일의 인형을 디스폰
         if (tiles[selecter.gridPos - 1].doll != null)
             Despawn(selecter.gridPos);
-
+        //셀렉터에 인형의 초상화 설정
         selecter.image.sprite = doll.profilePic;
+        //인형 개별버프 초기화
         ResetIndiBuff();
+        //모든 이미지오프 딜리게이트 실행
         AllImageOff();
 
         if (doll.go.activeSelf)
         {
+            //스폰하려는 인형이 이미 다른타일에 있으면, 해당인형의 셀렉터의 초상화를 지움
             doll.selecter.image.sprite = SingleTon.instance.nullButtonSprite;
+            //이미 다른타일에 있는 인형을 스폰하고자하는 셀렉터의 위치로 옮김
             MoveTo(doll.pos, selecter.gridPos, false);
         }
         else
         {
+            //그렇지 않으면 일반 스폰 진행
             doll.Spawn(tiles[selecter.gridPos - 1].tr);
+            //인형의 Pos에 셀렉터의 gridPos 할당
             doll.pos = selecter.gridPos;
+            //해당 타일의 인형에 스폰한 인형, 셀렉터 할당
+            //해당 타일의 미니버프 설정
             tiles[selecter.gridPos - 1].doll = doll;
             tiles[selecter.gridPos - 1].selecter = selecter;
             tiles[selecter.gridPos - 1].miniBuff.SetMiniBuff(doll.dollData);
         }
+        //인형의 셀렉터에 스폰한 셀렉터 할당.
         doll.selecter = selecter;
-
+        //전체 버프 계산
         CalcBuff();
     }
 

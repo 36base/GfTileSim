@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 각 타일에 보여주는 9칸의 타일버프,
+/// 인형의 위치, 나머지위치, 버프를 주는위치 칼라를 인스펙터에서 초기화해야한다
+/// </summary>
 public class MiniBuffSetter : MonoBehaviour
 {
+    /// <summary>
+    /// 1~9 각 타일의 위치에 알맞게 할당해줘야함
+    /// </summary>
     public Image[] miniBfs;
 
     public Color centerColor;
@@ -17,7 +24,6 @@ public class MiniBuffSetter : MonoBehaviour
     {
         MiniBuffOff();
     }
-
     private void SetCenter(int num)
     {
         if (num < 0)

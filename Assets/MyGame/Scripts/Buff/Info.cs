@@ -4,6 +4,10 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// 인형선택시 인형정보표시
+/// </summary>
 public class Info : MonoBehaviour
 {
     public bool infoOn = true;
@@ -21,8 +25,13 @@ public class Info : MonoBehaviour
         go.SetActive(false);
     }
 
+    /// <summary>
+    /// 해당하는 인형에대한 버프정보를 설정한다.
+    /// </summary>
+    /// <param name="doll">인형</param>
     public void SetInfo(Doll doll)
     {
+        //옵션에서 On/Off 가능
         if (!infoOn)
             return;
 
@@ -74,7 +83,12 @@ public class Info : MonoBehaviour
         text.text = sb.ToString();
     }
 
-
+    /// <summary>
+    /// 인형정보에서 gridEffect를 읽어들여 버프를 문자열화,
+    /// 권총의 경우 버프2배
+    /// </summary>
+    /// <param name="doll"></param>
+    /// <returns></returns>
     private string ReturnStatName(Doll doll)
     {
         sb2.Length = 0;
