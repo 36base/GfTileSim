@@ -6,13 +6,22 @@ using System;
 using System.IO;
 using System.Text;
 
+/// <summary>
+/// 인형 프리셋 저장불러오기 및 관리 클래스
+/// </summary>
 public class DollPreset : MonoBehaviour
 {
     public GameObject presetPanel;
     public GameObject savePanel;
     public GameObject deletePanel;
+    /// <summary>
+    /// 0~9까지 사용
+    /// </summary>
     public int presetId;
 
+    /// <summary>
+    /// 각 프리셋에 표현될 인형들 이미지배열
+    /// </summary>
     public Image[] dollPics;
 
     //public bool pressed;
@@ -52,6 +61,8 @@ public class DollPreset : MonoBehaviour
     public void SavePreset()
     {
         string plainText = "";
+        
+        //프리셋 내 인형이미지를 순회하면서 알맞은 이미지 할당 및 플레인텍스트 연결
         for (int i = 0; i < dollPics.Length; i++)
         {
             int pos = SingleTon.instance.dollSelecter.selects[i].gridPos;
@@ -66,22 +77,28 @@ public class DollPreset : MonoBehaviour
                 id = SingleTon.instance.grid.tiles[pos - 1].doll.id;
                 dollPics[i].sprite = SingleTon.instance.mgr.dollDict[id].profilePic;
             }
-
+            
             plainText += "ID" + id.ToString("D5") + "Pos" + pos;
         }
+
+        //연결된 플레인텍스트 암호화
         string cipherText = DataManager.Encrypt(plainText);
 
         try
         {
+            //저장할 파일이 존재하지 않을경우 초기화 호출
             if (!File.Exists(Application.persistentDataPath + "/PresetInfo.dat"))
             {
                 SingleTon.instance.msg.SetMsg("파일이 존재하지 않음");
                 SingleTon.instance.dollPresetList.InitAllPresets();
             }
 
+            //저장할 파일에 모든 Line을 읽어 문자열 배열로 반환
             var data = File.ReadAllLines(Application.persistentDataPath + "/PresetInfo.dat");
 
+            //알맞은 presetId의 배열 위치에 암호화된 텍스트 할당
             data[presetId] = cipherText;
+            //수정된 배열을 다시 쓰기
             File.WriteAllLines(Application.persistentDataPath + "/PresetInfo.dat", data);
         }
         catch
@@ -107,10 +124,11 @@ public class DollPreset : MonoBehaviour
             {
                 streamReader.ReadLine();
             }
-
+            //PresetId에 알맞은 라인을 읽어옴
             cipherText = streamReader.ReadLine();
+            //복호화
             string plainText = DataManager.Decrypt(cipherText);
-
+            //복호화 한 문자열을 Grid에 표현
             DataToGrid(plainText);
 
             streamReader.Close();
@@ -123,18 +141,21 @@ public class DollPreset : MonoBehaviour
     {
         try
         {
+            //파일이 존재하지 않을경우 초기화 호출
             if (!File.Exists(Application.persistentDataPath + "/PresetInfo.dat"))
             {
                 SingleTon.instance.msg.SetMsg("파일이 존재하지 않음");
                 SingleTon.instance.dollPresetList.InitAllPresets();
             }
 
+            //SavePreset과 동일기능, 저장할 line에 빈데이터 저장
             var data = File.ReadAllLines(Application.persistentDataPath + "/PresetInfo.dat");
 
             data[presetId] = "7qnzva8CTUHjOZeZ0lsGe+nUIkpDaO/FqQHaWAyfUmpUHj5SW+7Ri7fgbx2DXXE1hL8k7xz1pCiWrDpSCWMWfA==";
             File.WriteAllLines(Application.persistentDataPath + "/PresetInfo.dat", data);
             for (int i = 0; i < dollPics.Length; i++)
             {
+                //빈 이미지 할당
                 dollPics[i].sprite = SingleTon.instance.nullButtonSprite_dark;
             }
         }
@@ -147,9 +168,14 @@ public class DollPreset : MonoBehaviour
         deletePanel.SetActive(false);
     }
 
+    /// <summary>
+    /// 플레인 텍스트를 받아 프리셋 생성
+    /// </summary>
+    /// <param name="plainText"></param>
     public void MakePreset(string plainText)
     {
         StringBuilder sb = new StringBuilder();
+        //ID00000POS0 x5
         if (plainText.Length == 55)
         {
             for (int i = 0; i < 5; i++)
@@ -178,6 +204,10 @@ public class DollPreset : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레인 텍스트를 받아 그리드에 인형 출력
+    /// </summary>
+    /// <param name="plainText"></param>
     public void DataToGrid(string plainText)
     {
         StringBuilder sb = new StringBuilder();

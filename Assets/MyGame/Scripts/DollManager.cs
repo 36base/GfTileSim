@@ -6,21 +6,46 @@ using System.Collections;
 using System.Collections.Generic;
 using LitJson;
 
+/// <summary>
+/// 초기화 시 Json 데이터를 이용 인형데이터를 가공하는 클래스
+/// </summary>
 public class DollManager : MonoBehaviour
 {
     public TextAsset dollJson;
 
+    /// <summary>
+    /// 인형 프리팹
+    /// </summary>
     public GameObject dollPrefab;
+    /// <summary>
+    /// 생성된 인형들을 담아둘 곳
+    /// </summary>
     public Transform dollPool;
-
+    /// <summary>
+    /// 생성된 모든 인형 을 담는 딕셔너리
+    /// </summary>
     public Dictionary<int, Doll> dollDict = new Dictionary<int, Doll>();
 
+    /// <summary>
+    /// 인형 프로필 액자사진 아틀라스 경로
+    /// </summary>
     public string[] AtlasPath;
 
+    /// <summary>
+    /// 데이터 로드 이후 활성화 할 오브젝트들
+    /// </summary>
     public GameObject[] afterLoadingObjects;
+    /// <summary>
+    /// 데이터 로드 이후 비활성화 할 오브젝트들
+    /// </summary>
     public GameObject beforeLoadingObject;
-
+    /// <summary>
+    /// 로드 진행 슬라이더 바
+    /// </summary>
     public Slider loadingSlider;
+    /// <summary>
+    /// cutCount 만큼 로드 진행후 슬라이더 갱신합니다
+    /// </summary>
     public int cutCount = 20;
 
 
@@ -33,6 +58,12 @@ public class DollManager : MonoBehaviour
         StartCoroutine(MakeDollData(JsonMapper.ToObject(dollJson.text)));
     }
 
+    /// <summary>
+    /// 해당 코루틴에서 모든 데이터 로드 및 로딩진행 표기 합니다.
+    /// 비동기씬로드로 로드진행상황 표시 안됩니다. (슬라이더 90%에서 진행이됨)
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
     private IEnumerator MakeDollData(JsonData data)
     {
         var count = data.Count;

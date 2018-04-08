@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 상태매시지 클래스
+/// </summary>
 public class StatusMessage : MonoBehaviour
 {
     public Text message;

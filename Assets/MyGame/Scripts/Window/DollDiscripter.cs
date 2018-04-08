@@ -4,6 +4,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 인형 리스트에서 포인터 터치 시 표현되는 정보
+/// </summary>
 public class DollDiscripter : MonoBehaviour
 {
     public Text text;
@@ -20,6 +23,8 @@ public class DollDiscripter : MonoBehaviour
 
     private void Update()
     {
+        // 리스트 중앙을 기준으로 왼쪽, 오른쪽 표시되는 위치 조절
+        // 모바일기준 유저 손가락 위치 가림 대비
         if (target.position.x < 0)
             this.tr.position = target.position + new Vector3(
                 target.position.x * 0.1f, -0.2f, 0f);
@@ -28,6 +33,11 @@ public class DollDiscripter : MonoBehaviour
                 target.position.x * -1f, -0.2f, 0f);
     }
 
+    /// <summary>
+    /// 정보 표시
+    /// </summary>
+    /// <param name="tr">표시될 위치 트랜스폼</param>
+    /// <param name="doll">표시될 인형 정보</param>
     public void Show(Transform tr, Doll doll)
     {
         go.SetActive(true);

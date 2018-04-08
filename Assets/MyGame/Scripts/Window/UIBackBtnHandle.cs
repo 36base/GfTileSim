@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 윈도우 들 뒤로가기 처리 및 애니메이션 처리용 부모클래스
+/// </summary>
 public class UIBackBtnHandle : MonoBehaviour
 {
     public bool isWindow = false;

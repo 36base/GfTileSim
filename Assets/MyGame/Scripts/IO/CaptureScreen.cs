@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+/// <summary>
+/// 캡쳐 후 갤러리저장 또는 공유 기능
+/// </summary>
 public class CaptureScreen : MonoBehaviour
 {
-
+    /// <summary>
+    /// 캡쳐 후 다시 캡쳐가능한 딜레이
+    /// </summary>
     public float waitTime = 1f;
     float currTime = 0f;
     bool wait;

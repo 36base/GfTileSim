@@ -3,28 +3,48 @@ using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// 인형 선택 리스트
+/// </summary>
 public class DollList : UIBackBtnHandle
 {
     public GameObject dollButtonPrefab;
     public Grid grid;
 
+    /// <summary>
+    /// 인형 버튼들이 들어갈 스크롤뷰 콘텐츠
+    /// </summary>
     public Transform content;
 
-    //public GameObject[] filters;
+    //다음 버튼 누르면 새로운 필터 보임, 지금은 사용하지 않습니다.
     public int filterIndex = 0;
 
+    //Sort Value = 정렬 값 1 또는 -1 순, 역순 
     public int noSortValue = 1;
     public int rareSortValue = -1;
     public int nameSortValue = 1;
+    //Filter Value = 필터링할 비트플래그 값 이진 계산함
     public int gunBitFilterValue = 0;
     public int rareBitFilterValue = 0;
+
+    //Images = 해당 필터버튼들의 이미지, 필터 활성시 이미지 색상 변경
     public Image[] gunFilterImages;
     public Image[] rareFilterImages;
 
+    /// <summary>
+    /// 스크롤 뷰에 들어갈 버튼 엘리먼트 리스트
+    /// </summary>
     public List<ListElement> elements = new List<ListElement>();
 
+    /// <summary>
+    /// 선택한 셀렉터 num
+    /// </summary>
     public int currentSelection;
 
+    /// <summary>
+    /// 스크롤뷰 콘텐츠에 인형버튼 추가 및 버튼 이벤트 할당
+    /// </summary>
+    /// <param name="doll"></param>
     public void AddContent(Doll doll)
     {
         var go = Instantiate(dollButtonPrefab, content.position, Quaternion.identity)
@@ -37,6 +57,10 @@ public class DollList : UIBackBtnHandle
         elements.Add(ele);
     }
 
+    /// <summary>
+    /// 스크롤 뷰 내의 인형 버튼 클릭시 인형 스폰
+    /// </summary>
+    /// <param name="num">스폰할 인형 id</param>
     public void SelectDoll(int num)
     {
         if (!isWindow)
@@ -54,6 +78,9 @@ public class DollList : UIBackBtnHandle
         Close();
     }
 
+    /// <summary>
+    /// 해당 셀렉터에 위치한 타일의 인형 해제
+    /// </summary>
     public void DeSelectDoll()
     {
         if (!isWindow)
@@ -71,6 +98,9 @@ public class DollList : UIBackBtnHandle
         Close();
     }
 
+    /// <summary>
+    /// 인형 번호 순 정렬
+    /// </summary>
     public void NoSort()
     {
         elements.Sort((a, b) =>
@@ -87,6 +117,9 @@ public class DollList : UIBackBtnHandle
         noSortValue *= -1;
     }
 
+    /// <summary>
+    /// 인형 레어도 순 정렬
+    /// </summary>
     public void RareSort()
     {
         elements.Sort((a, b) =>
@@ -108,6 +141,9 @@ public class DollList : UIBackBtnHandle
         rareSortValue *= -1;
     }
 
+    /// <summary>
+    /// 인형 이름 순 정렬
+    /// </summary>
     public void NameSort()
     {
         elements.Sort((a, b) =>
@@ -119,6 +155,9 @@ public class DollList : UIBackBtnHandle
         nameSortValue *= -1;
     }
 
+    /// <summary>
+    /// 정렬된 리스트에 맞춰서 SetSiblingIndex실행, 하이어아키 뷰에서 순서변경
+    /// </summary>
     private void SortAllElements()
     {
         for (int i = 0; i < elements.Count; i++)
@@ -127,6 +166,9 @@ public class DollList : UIBackBtnHandle
         }
     }
 
+    /// <summary>
+    /// 필터 초기화
+    /// </summary>
     public void AllFilter()
     {
         for (int i = 0; i < elements.Count; i++)
@@ -146,6 +188,10 @@ public class DollList : UIBackBtnHandle
         rareBitFilterValue = 0;
     }
 
+    /// <summary>
+    /// 총기 타입에 따른 필터
+    /// </summary>
+    /// <param name="bit">인스펙터에서 할당, 비트단위 이동</param>
     public void GunFilter(int bit)
     {
         gunBitFilterValue ^= (1 << bit - 1);
@@ -160,6 +206,11 @@ public class DollList : UIBackBtnHandle
 
         Filtering();
     }
+
+    /// <summary>
+    /// 레어도에 따른 필터
+    /// </summary>
+    /// <param name="bit">인스펙터에서 할당, 비트단위 이동</param>
     public void RareFilter(int bit)
     {
         rareBitFilterValue ^= (1 << bit - 2);
@@ -173,6 +224,10 @@ public class DollList : UIBackBtnHandle
         }
         Filtering();
     }
+
+    /// <summary>
+    /// 세팅된 필터에 따른 게임오브젝트 비활성화를 통한 필터링
+    /// </summary>
     private void Filtering()
     {
         bool value;

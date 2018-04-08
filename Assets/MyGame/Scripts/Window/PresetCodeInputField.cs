@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 프리셋 복사, 불여넣기 클래스
+/// </summary>
 public class PresetCodeInputField : UIBackBtnHandle
 {
     public InputField inputField;

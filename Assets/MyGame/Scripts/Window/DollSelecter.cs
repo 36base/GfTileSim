@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// 인형 선택기, 소환할 grid 위치 판단
+/// </summary>
 public class DollSelecter : MonoBehaviour
 {
     [System.Serializable]

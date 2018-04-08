@@ -5,6 +5,9 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
+/// <summary>
+/// 문자열 암, 복호화 매니저
+/// </summary>
 public class DataManager
 {
     static readonly string PasswordHash = "SJa2Ysz@!zf";

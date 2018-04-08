@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 인형의 기본 클래스
+/// </summary>
 public class Doll : MonoBehaviour
 {
+    /// <summary>
+    /// 인형 상태 구분
+    /// </summary>
     public enum DollState
     {
         Idle,
@@ -14,8 +20,13 @@ public class Doll : MonoBehaviour
     private Camera cam;
 
     public int id;
-
+    /// <summary>
+    /// 인형 데이터
+    /// </summary>
     public DollData dollData;
+    /// <summary>
+    /// 인형 스켈레톤 애니메이션
+    /// </summary>
     public SkeletonAnimation skelAnim;
     public Sprite profilePic;
 
@@ -36,6 +47,7 @@ public class Doll : MonoBehaviour
 
     private void Update()
     {
+        //팔로우 상태 시 포인터를 따라가게 끔
         if(state == DollState.Following)
         {
             var z = tr.position.z;
@@ -56,6 +68,10 @@ public class Doll : MonoBehaviour
         go.SetActive(false);
     }
 
+    /// <summary>
+    /// 인형 상태 변경
+    /// </summary>
+    /// <param name="state"></param>
     public void SetState(DollState state)
     {
         this.state = state;
