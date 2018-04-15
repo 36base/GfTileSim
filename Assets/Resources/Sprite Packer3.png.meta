@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cd4a47fa1ee9cdc4692e2807cc03b009
-timeCreated: 1523802769
+timeCreated: 1523807856
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,10 @@ TextureImporter:
     21300040: 215
     21300042: 216
     21300044: 217
+    21300046: 10075
+    21300048: 10039
+    21300050: 10005
+    21300052: 10091
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -109,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1003
+      name: 205
       rect:
         serializedVersion: 2
         x: 0
@@ -122,7 +126,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 1007
+      name: 206
       rect:
         serializedVersion: 2
         x: 0
@@ -135,7 +139,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 1002
+      name: 216
       rect:
         serializedVersion: 2
         x: 0
@@ -148,7 +152,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 1004
+      name: 204
       rect:
         serializedVersion: 2
         x: 0
@@ -161,7 +165,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 210
+      name: 207
       rect:
         serializedVersion: 2
         x: 0
@@ -174,7 +178,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 202
+      name: 208
       rect:
         serializedVersion: 2
         x: 196
@@ -187,7 +191,59 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 1005
+      name: 215
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 196
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 10075
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 392
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 10039
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 588
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 10005
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 784
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 213
       rect:
         serializedVersion: 2
         x: 392
@@ -200,36 +256,10 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 217
+      name: 212
       rect:
         serializedVersion: 2
-        x: 588
-        y: 0
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 1008
-      rect:
-        serializedVersion: 2
-        x: 784
-        y: 0
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 203
-      rect:
-        serializedVersion: 2
-        x: 196
+        x: 392
         y: 196
         width: 195
         height: 195
@@ -239,37 +269,11 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 1006
+      name: 10091
       rect:
         serializedVersion: 2
-        x: 196
+        x: 392
         y: 392
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 1001
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 588
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 200
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 784
         width: 195
         height: 195
       alignment: 9
@@ -282,58 +286,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 392
-        y: 196
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 204
-      rect:
-        serializedVersion: 2
-        x: 588
-        y: 196
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 207
-      rect:
-        serializedVersion: 2
-        x: 784
-        y: 196
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 208
-      rect:
-        serializedVersion: 2
-        x: 392
-        y: 392
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 205
-      rect:
-        serializedVersion: 2
-        x: 392
         y: 588
         width: 195
         height: 195
@@ -343,7 +295,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 206
+      name: 1004
       rect:
         serializedVersion: 2
         x: 392
@@ -356,7 +308,33 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 216
+      name: 210
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 0
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 202
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 196
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 1003
       rect:
         serializedVersion: 2
         x: 588
@@ -369,20 +347,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 215
-      rect:
-        serializedVersion: 2
-        x: 784
-        y: 392
-        width: 195
-        height: 195
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: 213
+      name: 1007
       rect:
         serializedVersion: 2
         x: 588
@@ -395,11 +360,102 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: 212
+      name: 1002
       rect:
         serializedVersion: 2
         x: 588
         y: 784
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 1005
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 0
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 1006
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 196
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 1001
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 392
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 200
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 588
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 217
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 784
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 1008
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 0
+        width: 195
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 203
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 196
         width: 195
         height: 195
       alignment: 9
