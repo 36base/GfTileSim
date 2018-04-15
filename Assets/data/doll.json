@@ -8489,5 +8489,159 @@
             }
         },
         "krName": "SM-1"
+    },
+    {
+        "id": 10005,
+        "name": "M1895Mod",
+        "rank": 4,
+        "type": 1,
+        "illust": "X布",
+        "voice": "Narumi Sinohara",
+        "buildTime": 1200,
+        "drop": [ "모든맵" ],
+        "skins": [],
+        "nick": [ "할매" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 92,
+            "hit": 46,
+            "hp": 70,
+            "pow": 32,
+            "range": 0,
+            "rate": 44,
+            "shield": 0,
+            "speed": 15,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 2, 4, 8 ],
+            "gridEffect": {
+                "pow": 18,
+                "crit": 10
+            }
+        },
+        "krName": "나강 리볼버_MOD"
+    },
+    {
+        "id": 10091,
+        "name": "MP446Mod",
+        "rank": 4,
+        "type": 1,
+        "illust": "XQ",
+        "voice": "Iori Nomizu",
+        "buildTime": 1500,
+        "drop": [ "1-5 부터 모든지역" ],
+        "skins": [ "고집 센 악동", "해바라기" ],
+        "nick": [],
+        "stats": {
+            "armor": 0,
+            "dodge": 74,
+            "hit": 53,
+            "hp": 66,
+            "pow": 30,
+            "range": 0,
+            "rate": 59,
+            "shield": 0,
+            "speed": 15,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 1, 2, 4, 7, 8 ],
+            "gridEffect": {
+                "pow": 18
+            }
+        },
+        "krName": "MP-446_MOD"
+    },
+    {
+        "id": 10039,
+        "name": "M1891Mod",
+        "rank": 5,
+        "type": 3,
+        "illust": "防弹乳牛",
+        "voice": "Uesaka Sumire",
+        "buildTime": 15000,
+        "drop": [ "0-3", "4-6", "5-6", "5-3e", "6-5", "6-3e", "7-5", "7-1e", "8-1", "8-2e" ],
+        "skins": [ "달빛 바다" ],
+        "nick": [],
+        "stats": {
+            "armor": 0,
+            "dodge": 38,
+            "hit": 85,
+            "hp": 88,
+            "pow": 131,
+            "range": 0,
+            "rate": 30,
+            "shield": 0,
+            "speed": 7,
+            "crit": 40,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 1,
+            "effectCenter": 5,
+            "effectPos": [ 2 ],
+            "gridEffect": {
+                "coolDown": 18
+            }
+        },
+        "krName": "모신나강_MOD"
+    },
+    {
+        "id": 10075,
+        "name": "M1918Mod",
+        "rank": 5,
+        "type": 5,
+        "illust": "水乌龟",
+        "voice": "Yuuki Aoi",
+        "buildTime": 23100,
+        "drop": [ "0-1", "6-6", "7-3", "8-3" ],
+        "skins": [ "바니 걸", "준비된 세레나데", "꿈꿔왔던 크리스마스" ],
+        "nick": [],
+        "stats": {
+            "armor": 0,
+            "dodge": 33,
+            "hit": 31,
+            "hp": 157,
+            "pow": 96,
+            "range": 0,
+            "rate": 114,
+            "shield": 0,
+            "speed": 4,
+            "crit": 5,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 8
+        },
+        "effect": {
+            "effectType": 6,
+            "effectCenter": 4,
+            "effectPos": [ 6 ],
+            "gridEffect": {
+                "pow": 18,
+                "armor": 10
+            }
+        },
+        "krName": "M1918_MOD"
     }
 ]
