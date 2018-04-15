@@ -8451,5 +8451,43 @@
             }
         },
         "krName": "C-MS"
+    },
+    {
+        "id": 217,
+        "name": "HEZISM1",
+        "rank": 3,
+        "type": 3,
+        "illust": "",
+        "voice": "/",
+        "buildTime": 0,
+        "drop": [ "" ],
+        "skins": [ "" ],
+        "nick": [ "" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 50,
+            "hit": 50,
+            "hp": 105,
+            "pow": 48,
+            "range": 0,
+            "rate": 77,
+            "shield": 0,
+            "speed": 10,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 1,
+            "effectCenter": 5,
+            "effectPos": [ 2, 8 ],
+            "gridEffect": {
+                "coolDown": 12
+            }
+        },
+        "krName": "SM-1"
     }
 ]
