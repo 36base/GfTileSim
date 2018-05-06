@@ -7404,7 +7404,7 @@
                 "crit": 20
             }
         },
-        "krName": "PDW"
+        "krName": "허니뱃저"
     },
     {
         "id": 204,
@@ -8643,5 +8643,83 @@
             }
         },
         "krName": "M1918_MOD"
+    },
+    {
+        "id": 1009,
+        "name": "CLEAR",
+        "rank": 5,
+        "type": 1,
+        "illust": "Saru",
+        "voice": "Aimi Tanaka",
+        "buildTime": 3000,
+        "drop": [ "0-1", "4-1", "5-1", "6-5", "7-1", "8-2", "1-4E", "3-1E", "3-4E", "4-1E", "5-1E", "6-1E", "8-1E" ],
+        "skins": [ "별똥별의 소원" ],
+        "nick": [ "콜라" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 76,
+            "hit": 49,
+            "hp": 80,
+            "pow": 36,
+            "range": 0,
+            "rate": 47,
+            "shield": 0,
+            "speed": 15,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 1, 2, 4, 7, 8 ],
+            "gridEffect": {
+                "rate": 15,
+                "hit": 25
+            }
+        },
+        "krName": "클리어"
+    },
+    {
+        "id": 1010,
+        "name": "FAIL",
+        "rank": 5,
+        "type": 1,
+        "illust": "Saru",
+        "voice": "Aimi Tanaka",
+        "buildTime": 3000,
+        "drop": [ "0-1", "4-1", "5-1", "6-5", "7-1", "8-2", "1-4E", "3-1E", "3-4E", "4-1E", "5-1E", "6-1E", "8-1E" ],
+        "skins": [ "별똥별의 소원" ],
+        "nick": [ "콜라" ],
+        "stats": {
+            "armor": 0,
+            "dodge": 76,
+            "hit": 49,
+            "hp": 80,
+            "pow": 36,
+            "range": 0,
+            "rate": 47,
+            "shield": 0,
+            "speed": 15,
+            "crit": 20,
+            "critDmg": 0,
+            "armorPiercing": 10,
+            "nightView": 0,
+            "coolDown": 0,
+            "bullet": 0
+        },
+        "effect": {
+            "effectType": 0,
+            "effectCenter": 5,
+            "effectPos": [ 2, 3, 6, 8, 9 ],
+            "gridEffect": {
+                "pow": 15,
+                "hit": 25
+            }
+        },
+        "krName": "페일"
     }
 ]

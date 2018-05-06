@@ -31,6 +31,25 @@ public enum Stats
     bullet
 }
 
+public class DollStat
+{
+    public int armor;
+    public int dodge;
+    public int hit;
+    public int hp;
+    public int pow;
+    public int range;
+    public int rate;
+    public int shield;
+    public int speed;
+    public int crit;
+    public int critDmg;
+    public int armorPiercing;
+    public int nightView;
+    public int coolDown;
+    public int bullet;
+}
+
 /// <summary>
 /// 인형 진형버프 클래스
 /// </summary>
@@ -87,4 +106,5 @@ public class DollData
     public int rank;
     public DollType type;
     public Effect effect;
+    public DollStat stat;
 }
