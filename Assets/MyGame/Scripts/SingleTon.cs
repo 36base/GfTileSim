@@ -76,4 +76,28 @@ public class SingleTon : MonoBehaviour
         instance.dollSelecter.ResetAll();
         instance.info.OffInfo();
     }
+
+    public static DollType GetDollType(string type)
+    {
+        switch(type)
+        {
+            case "all":
+                return DollType.All;
+            case "hg":
+                return DollType.HG;
+            case "smg":
+                return DollType.SMG;
+            case "rf":
+                return DollType.RF;
+            case "ar":
+                return DollType.AR;
+            case "mg":
+                return DollType.MG;
+            case "sg":
+                return DollType.SG;
+            default:
+                return DollType.All;
+
+        }
+    }
 }

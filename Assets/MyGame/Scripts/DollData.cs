@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 public enum DollType
 {
@@ -63,9 +64,60 @@ public class Effect
 
         public GridEffect(string type, int value)
         {
+            switch(type)
+            {
+                case "armor":
+                    this.type = Stats.armor;
+                    break;
+                case "dodge":
+                    this.type = Stats.dodge;
+                    break;
+                case "hit":
+                    this.type = Stats.hit;
+                    break;
+                case "hp":
+                    this.type = Stats.hp;
+                    break;
+                case "pow":
+                    this.type = Stats.pow;
+                    break;
+                case "range":
+                    this.type = Stats.range;
+                    break;
+                case "rate":
+                    this.type = Stats.rate;
+                    break;
+                case "shield":
+                    this.type = Stats.shield;
+                    break;
+                case "speed":
+                    this.type = Stats.speed;
+                    break;
+                case "crit":
+                    this.type = Stats.crit;
+                    break;
+                case "critDmg":
+                    this.type = Stats.critDmg;
+                    break;
+                case "armorPiercing":
+                    this.type = Stats.armorPiercing;
+                    break;
+                case "nightView":
+                    this.type = Stats.nightView;
+                    break;
+                case "coolDown":
+                    this.type = Stats.coolDown;
+                    break;
+                case "bullet":
+                    this.type = Stats.bullet;
+                    break;
+                default:
+                    this.type = Stats.armor;
+                    Debug.Log("Error Stat type");
+                    break;
+            }
 
-            this.type = (Stats)Enum.Parse(typeof(Stats), type);
-
+            //this.type = (Stats)Enum.Parse(typeof(Stats), type);
             this.value = value;
         }
         public GridEffect(Stats type, int value)
