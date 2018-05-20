@@ -80,12 +80,14 @@ public class DollManager : MonoBehaviour
                 dolldata.name = data[i]["name"].ToString();
                 dolldata.krName = data[i]["krName"].ToString();
                 dolldata.rank = (int)data[i]["rank"];
-                dolldata.type = (DollType)(int)data[i]["type"];
+                dolldata.type = SingleTon.GetDollType(
+                    data[i]["type"].ToString());
 
 
                 var effect = new Effect();
 
-                effect.effectType = (DollType)(int)data[i]["effect"]["effectType"];
+                effect.effectType = SingleTon.GetDollType(
+                    data[i]["effect"]["effectType"].ToString());
                 effect.effectCenter = (int)data[i]["effect"]["effectCenter"];
 
                 var arrayCount = data[i]["effect"]["effectPos"].Count;
@@ -217,7 +219,7 @@ public class DollManager : MonoBehaviour
         SingleTon.instance.dollPresetList.InitAllPresets();
 
         beforeLoadingObject.SetActive(false);
-        for(int i =0;i<afterLoadingObjects.Length;i++)
+        for (int i = 0; i < afterLoadingObjects.Length; i++)
         {
             afterLoadingObjects[i].SetActive(true);
         }

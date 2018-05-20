@@ -8,6 +8,7 @@ public class Menu : UIBackBtnHandle
     public Toggle infoToggle;
     public Toggle soundToggle;
     public Toggle lossBuffToggle;
+    public Toggle showAdToggle;
 
     protected override void Update()
     {
@@ -58,10 +59,19 @@ public class Menu : UIBackBtnHandle
         {
             lossBuffToggle.isOn = false;
         }
+
+        if(PlayerPrefs.HasKey("showAd"))
+        {
+            showAdToggle.isOn = ReturnBool(PlayerPrefs.GetInt("showAd"));
+        }
+        else
+        {
+            showAdToggle.isOn = true;
+        }
         SetInfo();
         SetSound();
         SetLossBuff();
-
+        SetShowAd();
     }
     private bool ReturnBool(int value)
     {
@@ -114,6 +124,18 @@ public class Menu : UIBackBtnHandle
         {
             SingleTon.instance.grid.lossBuff = false;
             PlayerPrefs.SetInt("lossBuff", 0);
+        }
+    }
+
+    public void SetShowAd()
+    {
+        if(showAdToggle.isOn)
+        {
+            PlayerPrefs.SetInt("showAd", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("showAd", 0);
         }
     }
 }
