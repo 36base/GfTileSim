@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class OpenURLMgr : MonoBehaviour
 {
-    public GameObject ad;
+    public GameObject[] ads;
+
+    private GameObject currAds;
+
+    private void Start()
+    {
+        currAds = ads[Random.Range(0, ads.Length)];
+        currAds.SetActive(true);
+    }
 
     public void OpenTestURL()
     {
@@ -13,6 +21,6 @@ public class OpenURLMgr : MonoBehaviour
 
     public void CloseAd()
     {
-        ad.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
