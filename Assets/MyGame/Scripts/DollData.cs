@@ -105,7 +105,7 @@ public class Effect
                 case "nightView":
                     this.type = Stats.nightView;
                     break;
-                case "coolDown":
+                case "cooldown":
                     this.type = Stats.coolDown;
                     break;
                 case "bullet":

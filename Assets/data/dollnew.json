@@ -8658,6 +8658,7 @@
             "armorPiercing": 10,
             "crit": 40
         },
+        "krName": "SM-1",
         "grow": 115,
         "effect": {
             "effectType": "hg",
@@ -8665,6 +8666,16 @@
             "effectPos": [ 2, 8 ],
             "gridEffect": {
                 "cooldown": 12
+            }
+        },
+        "skill": {
+            "id": 4,
+            "name": "고속사격T",
+            "dataPool": {
+                "AR": [ 22, 24, 26, 28, 30, 32, 34, 36, 38, 40 ],
+                "DR": [ 9, 9.7, 10.3, 11, 11.7, 12.3, 13, 13.7, 14.3, 15 ],
+                "CD": [ 20, 19.6, 19.1, 18.7, 18.2, 17.8, 17.3, 16.9, 16.4, 16 ],
+                "IC": 5
             }
         }
     },
@@ -8683,7 +8694,6 @@
             "armorPiercing": 10,
             "crit": 5
         },
-        "krName": "SM-1",
         "grow": 98,
         "effect": {
             "effectType": "ar",
@@ -8693,6 +8703,7 @@
                 "rate": 12
             }
         },
+        "krName": "T77",
         "skill": {
             "id": 4,
             "name": "고속사격T",
@@ -8703,6 +8714,85 @@
                 "IC": 5
             }
         }
+    },
+    {
+        "id": 73,
+        "name": "AUG",
+        "rank": 5,
+        "type": "ar",
+        "illust": "芙芙酱",
+        "voice": "",
+        "drop": [],
+        "skins": [],
+        "nick": [ "어그" ],
+        "stats": {
+            "hp": 0,
+            "pow": 0,
+            "hit": 0,
+            "dodge": 0,
+            "speed": 0,
+            "rate": 0,
+            "armorPiercing": 0,
+            "crit": 0
+        },
+        "effect": {
+            "effectType": "all",
+            "effectCenter": 5,
+            "effectPos": [ 2, 3, 6, 8, 9 ],
+            "gridEffect": {
+                "pow": 12,
+                "hit": 20
+            }
+        },
+        "skill": {
+            "id": 20,
+            "dataPool": {
+                "CD": [ 20, 19.6, 19.1, 18.7, 18.2, 17.8, 17.3, 16.9, 16.4, 16 ]
+            }
+        },
+        "krName": "AUG",
+        "grow": 0
+    },
+    {
+        "id": 999,
+        "name": "Kalina",
+        "rank": 5,
+        "type": "ar",
+        "illust": "かれい",
+        "voice": "",
+        "buildTime": 12300,
+        "drop": [],
+        "skins": [],
+        "nick": [ "고등어" ],
+        "stats": {
+            "hp": 98,
+            "pow": 110,
+            "hit": 118,
+            "dodge": 105,
+            "speed": 100,
+            "rate": 120,
+            "armorPiercing": 10,
+            "crit": 20
+        },
+        "effect": {
+            "effectType": "all",
+            "effectCenter": 5,
+            "effectPos": [ 9 ],
+            "gridEffect": {
+                "pow": -99,
+                "dodge": -99
+            }
+        },
+        "skill": {
+            "id": 20,
+            "dataPool": {
+                "DM": [ 500, 580, 660, 730, 810, 890, 960, 1040, 1120, 1200 ],
+                "CD": [ 20, 19.6, 19.1, 18.7, 18.2, 17.8, 17.3, 16.9, 16.4, 16 ],
+                "IC": 8
+            }
+        },
+        "krName": "카리나",
+        "grow": 112
     },
     {
         "id": 1001,
