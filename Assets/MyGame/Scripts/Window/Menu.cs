@@ -60,18 +60,18 @@ public class Menu : UIBackBtnHandle
             lossBuffToggle.isOn = false;
         }
 
-        if(PlayerPrefs.HasKey("showAd"))
-        {
-            showAdToggle.isOn = ReturnBool(PlayerPrefs.GetInt("showAd"));
-        }
-        else
-        {
-            showAdToggle.isOn = true;
-        }
+        //if(PlayerPrefs.HasKey("showAd"))
+        //{
+        //    showAdToggle.isOn = ReturnBool(PlayerPrefs.GetInt("showAd"));
+        //}
+        //else
+        //{
+        //    showAdToggle.isOn = true;
+        //}
         SetInfo();
         SetSound();
         SetLossBuff();
-        SetShowAd();
+        //SetShowAd();
     }
     private bool ReturnBool(int value)
     {
