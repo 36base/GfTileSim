@@ -108,6 +108,58 @@ public class DollStat
         bullet = stat.bullet;
     }
 
+    public void SetStat(string stat, int value)
+    {
+        switch (stat)
+        {
+            case "armor":
+                armor = value;
+                break;
+            case "dodge":
+                dodge = value;
+                break;
+            case "hit":
+                hit = value;
+                break;
+            case "hp":
+                hp = value;
+                break;
+            case "pow":
+                pow = value;
+                break;
+            case "range":
+                range = value;
+                break;
+            case "rate":
+                rate = value;
+                break;
+            case "shield":
+                shield = value;
+                break;
+            case "speed":
+                speed = value;
+                break;
+            case "crit":
+                crit = value;
+                break;
+            case "critDmg":
+                critDmg = value;
+                break;
+            case "armorPiercing":
+                armorPiercing = value;
+                break;
+            case "nightView":
+                nightView = value;
+                break;
+            case "coolDown":
+                coolDown = value;
+                break;
+            case "bullet":
+                bullet = value;
+                break;
+        }
+    }
+
     public void SetStat(Stats stat, int value)
     {
         switch (stat)
@@ -541,8 +593,6 @@ public class StatMaker
         }
 
 
-        toData.id = fromData.id;
-        toData.type = fromData.type;
 
         //기본 스텟 계산
         for (int i = 0; i < statConstNormalBasic.Length; i++)
@@ -617,10 +667,10 @@ public class StatMaker
         }
         else
         {
-            for(int i =0;i<statConstNormalGrow.Length;i++)
+            for (int i = 0; i < statConstNormalGrow.Length; i++)
             {
                 int growValue = 0;
-                if(statConstNormalGrow[i].value2 != null)
+                if (statConstNormalGrow[i].value2 != null)
                 {
                     float value1 = statConstNormalGrow[i].value1;
                     float value2 = (float)statConstNormalGrow[i].value2;
@@ -662,7 +712,7 @@ public class StatMaker
 
     private float GetFavorRatio(DollFavor faver)
     {
-        switch(faver)
+        switch (faver)
         {
             case DollFavor.Worst:
                 return -0.05f;
@@ -676,6 +726,20 @@ public class StatMaker
                 return 0.15f;
             default:
                 return 0f;
+        }
+    }
+
+    public void CalcStatPlusBuff(DollData data, TileBuff tileBuff)
+    {
+        for (int i = 0; i < tileBuff.totalStats.Length; i++)
+        {
+            if (tileBuff.totalStats[i] != 0)
+            {
+                Stats stat = (Stats)i;
+                var value = data.stat.GetStat(stat);
+                value = (int)Mathf.Ceil(value + value * ((float)tileBuff.totalStats[i]/100f));
+                data.stat.SetStat(stat, value);
+            }
         }
     }
 }

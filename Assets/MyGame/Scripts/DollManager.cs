@@ -83,7 +83,7 @@ public class DollManager : MonoBehaviour
                 dolldata.type = SingleTon.GetDollType(
                     data[i]["type"].ToString());
 
-
+                /////Grid Effect/////
                 var effect = new Effect();
 
                 effect.effectType = SingleTon.GetDollType(
@@ -110,14 +110,23 @@ public class DollManager : MonoBehaviour
                         , (int)data[i]["effect"]["gridEffect"][keys[j]]);
                 }
 
-                //for (int j = 0; j < arrayCount; j++)
-                //{
-                //    effect.gridEffects[j] = new Effect.GridEffect(
-                //        data[i]["effect"]["gridEffect"][j]["type"].ToString()
-                //        , (int)data[i]["effect"]["gridEffect"][j]["value"]);
-                //}
-
                 dolldata.effect = effect;
+                /////Grid Effect/////
+
+                /////Doll Stat/////
+                dolldata.stat = new DollStat();
+
+                keys.Clear();
+                keys.AddRange(data[i]["stats"].Keys);
+                arrayCount = data[i]["stats"].Count;
+
+                for (int j = 0; j < arrayCount; j++)
+                {
+                    dolldata.stat.SetStat(keys[j], (int)data[i]["stats"][keys[j]]);
+                }
+                /////Doll Stat/////
+
+                dolldata.grow = (int)data[i]["grow"];
             }
             catch
             {
