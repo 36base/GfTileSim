@@ -41,6 +41,15 @@ public class DollList : UIBackBtnHandle
     /// </summary>
     public int currentSelection;
 
+    public override void Open()
+    {
+        if (!SingleTon.instance.listTop.activeSelf)
+            SingleTon.instance.listTop.SetActive(true);
+        base.Open();
+        //데미지 Sim과 같이 켤수 없게 함.
+        SingleTon.instance.damageSim.gameObject.SetActive(false);
+    }
+
     /// <summary>
     /// 스크롤뷰 콘텐츠에 인형버튼 추가 및 버튼 이벤트 할당
     /// </summary>

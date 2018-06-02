@@ -9,13 +9,14 @@ public class SingleTon : MonoBehaviour
     {
         get
         {
-            return dollList.isWindow | dollPresetList.isWindow | presetCodeIField.isWindow ;
+            return dollList.isWindow | dollPresetList.isWindow | presetCodeIField.isWindow | damageSim.isWindow;
         }
     }
 
     public DollManager mgr;
 
     public DollList dollList;
+    public GameObject listTop;
     public DollPresetList dollPresetList;
     public PresetCodeInputField presetCodeIField;
     public DollSelecter dollSelecter;
@@ -23,6 +24,8 @@ public class SingleTon : MonoBehaviour
     public StatusMessage msg;
     public DollDiscripter dollDiscript;
     public Info info;
+
+    public DamageSim damageSim;
 
     [Header("Sprites")]
     public Sprite selectedSprite;

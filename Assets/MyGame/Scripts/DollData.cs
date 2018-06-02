@@ -302,6 +302,25 @@ public class DollStat
                 return 0;
         }
     }
+
+    public void ResetAllStat()
+    {
+        armor = 0;
+        dodge = 0;
+        hit = 0;
+        hp = 0;
+        pow = 0;
+        range = 0;
+        rate = 0;
+        shield = 0;
+        speed = 0;
+        crit = 0;
+        critDmg = 0;
+        armorPiercing = 0;
+        nightView = 0;
+        coolDown = 0;
+        bullet = 0;
+    }
 }
 
 /// <summary>
@@ -415,6 +434,34 @@ public class DollData
     public int grow;
 }
 
+public enum DollFavor
+{
+    Worst,  // < 10
+    Normal, // < 90
+    Like,   // < 140
+    Love,   // < 190
+    MadLove,// >= 190
+}
+
+public enum DollEquip
+{
+    Scope = 0,
+    Holo,
+    Reddot,
+    Nightvision,
+    APBullet,
+    HPBullet,
+    SGBullet_B,
+    SGBullet_S,
+    HVBullet = 8,
+    //Chip,
+    //Skeleton,
+    //Armor,
+    Silencer,
+    Ammobox,
+    Suit
+    //Special = 15
+}
 
 public class StatMaker
 {
@@ -565,15 +612,6 @@ public class StatMaker
         statConstAfter100Grow[1] = new StatConst(Stats.hit, 0.075f, 22.572f);
         statConstAfter100Grow[2] = new StatConst(Stats.pow, 0.06f, 18.018f);
         statConstAfter100Grow[3] = new StatConst(Stats.rate, 0.022f, 15.741f);
-    }
-
-    public enum DollFavor
-    {
-        Worst,  // < 10
-        Normal, // < 90
-        Like,   // < 140
-        Love,   // < 190
-        MadLove,// >= 190
     }
 
     /// <summary>

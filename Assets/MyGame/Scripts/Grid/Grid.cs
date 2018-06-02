@@ -40,9 +40,10 @@ public class Grid : MonoBehaviour
 
     private void Update()
     {
-        //인형리스트 또는 코드복사불여넣기 중 인형선택불가
+        //인형리스트 또는 코드복사불여넣기 + 데미지시뮬 중 인형선택불가
         if (SingleTon.instance.dollList.isWindow 
-            || SingleTon.instance.presetCodeIField.isWindow)
+            || SingleTon.instance.presetCodeIField.isWindow
+            || SingleTon.instance.damageSim.isWindow)
             return;
 
         //터치-업 : 인형 드랍
