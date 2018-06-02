@@ -260,6 +260,7 @@ public class DamageSim : UIBackBtnHandle
                     statMaker.CalcStat(tiles[selectors[i].gridPos - 1].doll.dollData, targetDolls[index], 120, dollSettings[index].favor);
                 else
                     statMaker.CalcStat(tiles[selectors[i].gridPos - 1].doll.dollData, targetDolls[index], dollSettings[index].level, dollSettings[index].favor);
+                targetDolls[index].stat.AddAllStat(dollSettings[index].equipmentStat);
                 statMaker.CalcStatPlusBuff(targetDolls[index], tiles[selectors[i].gridPos - 1].tileBuff);
 
                 //nextAttackFrames[index] = CalcFrame(index, targetDolls[index].stat.rate);
@@ -318,7 +319,7 @@ public class DamageSim : UIBackBtnHandle
             {
                 var x = 0f;
                 //레벨/호감도로 계산된 인형스텟 + 장비스텟 더해요
-                var bullet = targetDolls[i].stat.bullet + dollSettings[i].equipmentStat.bullet;
+                var bullet = targetDolls[i].stat.bullet;
                 for (int j = 0; j < lines[i].Points.Length; j++)
                 {
                     if (x > endOfLineX)
@@ -331,7 +332,7 @@ public class DamageSim : UIBackBtnHandle
 
                     if (j % 2 == 1)
                     {
-                        x += CalcFrame(i, targetDolls[i].stat.rate + dollSettings[i].equipmentStat.rate) * xRatio;
+                        x += CalcFrame(i, targetDolls[i].stat.rate) * xRatio;
                         if (j < 2)
                             Shoot(i, 0);
                         else
@@ -344,7 +345,7 @@ public class DamageSim : UIBackBtnHandle
                                 if (bullet == 0)
                                 {
                                     x += CalcReloadFrame(i) * xRatio;
-                                    bullet = targetDolls[i].stat.bullet + dollSettings[i].equipmentStat.bullet;
+                                    bullet = targetDolls[i].stat.bullet;
                                 }
                             }
                         }
@@ -387,11 +388,11 @@ public class DamageSim : UIBackBtnHandle
     {
         if (targetDolls[index].type == DollType.SG)
         {
-            return (1.5f + (0.5f * targetDolls[index].stat.bullet + dollSettings[index].equipmentStat.bullet)) * 29.999994f;
+            return (1.5f + (0.5f * targetDolls[index].stat.bullet)) * 29.999994f;
         }
         else if (targetDolls[index].type == DollType.MG)
         {
-            return (4 + (200 / targetDolls[index].stat.rate + dollSettings[index].equipmentStat.rate)) * 29.999994f;
+            return (4 + (200 / targetDolls[index].stat.rate)) * 29.999994f;
         }
         return 0f;
     }
@@ -405,24 +406,24 @@ public class DamageSim : UIBackBtnHandle
             return 0;
 
         int value;
-        int armorDamage = targetDolls[index].stat.armorPiercing + dollSettings[index].equipmentStat.armorPiercing - enemy.armor;
+        int armorDamage = targetDolls[index].stat.armorPiercing - enemy.armor;
         armorDamage = Mathf.Min(armorDamage, 2);
 
-        value = Mathf.Max(targetDolls[index].stat.pow + dollSettings[index].equipmentStat.pow + armorDamage, 1);
+        value = Mathf.Max(targetDolls[index].stat.pow + armorDamage, 1);
 
 
         var crit = Mathf.Clamp(
-            (float)(targetDolls[index].stat.crit + dollSettings[index].equipmentStat.crit) / 100f, 0f, 1f);
+            (float)(targetDolls[index].stat.crit) / 100f, 0f, 1f);
         var critDmg = value * (1.5f
-            + (float)(targetDolls[index].stat.critDmg + dollSettings[index].equipmentStat.critDmg) / 100f);
+            + (float)(targetDolls[index].stat.critDmg) / 100f);
 
-        int _hit = targetDolls[index].stat.hit + dollSettings[index].equipmentStat.hit;
+        int _hit = targetDolls[index].stat.hit;
         float hit;
 
         if (isNightMode)
         {
             float nightHit;
-            nightHit = _hit * (0.1f + (0.9f * ((targetDolls[index].stat.nightView + dollSettings[index].equipmentStat.nightView) / 100f)));
+            nightHit = _hit * (0.1f + (0.9f * ((targetDolls[index].stat.nightView) / 100f)));
             hit = nightHit / (nightHit + enemy.dodge);
         }
         else

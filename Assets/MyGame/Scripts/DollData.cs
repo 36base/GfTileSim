@@ -107,6 +107,24 @@ public class DollStat
         coolDown = stat.coolDown;
         bullet = stat.bullet;
     }
+    public void AddAllStat(DollStat stat)
+    {
+        armor += stat.armor;
+        dodge += stat.dodge;
+        hit += stat.hit;
+        hp += stat.hp;
+        pow += stat.pow;
+        range += stat.range;
+        rate += stat.rate;
+        shield += stat.shield;
+        speed += stat.speed;
+        crit += stat.crit;
+        critDmg += stat.critDmg;
+        armorPiercing += stat.armorPiercing;
+        nightView += stat.nightView;
+        coolDown += stat.coolDown;
+        bullet += stat.bullet;
+    }
 
     public void SetStat(string stat, int value)
     {

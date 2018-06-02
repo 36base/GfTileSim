@@ -30,8 +30,8 @@ public class DamageSimSetting : MonoBehaviour
     }
     public void OKButton()
     {
-        SingleTon.instance.damageSim.SetTargetDolls();
         SetAllEquipToStat();
+        SingleTon.instance.damageSim.SetTargetDolls();
         SetEnemy();
         SingleTon.instance.damageSim.MakeGraph(true);
     }
