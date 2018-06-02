@@ -27,7 +27,6 @@ public class DollSetting
     public int level = 100;
 }
 
-[System.Serializable]
 public class Enemy
 {
     public int dodge = 0;
@@ -42,7 +41,7 @@ public class DamageSim : UIBackBtnHandle
     public Slider sliderX;
     public Slider sliderY;
 
-    public Enemy enemy;
+    public Enemy enemy = new Enemy();
 
     public DollSetting[] dollSettings = new DollSetting[5];
     public DollData[] targetDolls = new DollData[5];
@@ -57,10 +56,13 @@ public class DamageSim : UIBackBtnHandle
     public float xRatio = 3f;
 
     bool isAnimGraph;
-    public bool nightOperation;
+    public bool isNightMode;
     [Space]
     public DamageSimSetting setting;
     public DamageSimToolTip toolTip;
+    public DamageSimNightMode nightMode;
+    bool didUSeeWarning = false;
+    public DamageSimWarning warning;
 
     private void Awake()
     {
@@ -100,6 +102,20 @@ public class DamageSim : UIBackBtnHandle
         if (toolTip.gameObject.activeSelf)
             toolTip.SetText();
     }
+    public void SetNightMode()
+    {
+        if (!isNightMode)
+        {
+            isNightMode = true;
+            nightMode.ChangeNightMode();
+        }
+        else
+        {
+            isNightMode = false;
+            nightMode.ChangeDayMode();
+        }
+        MakeGraph(true);
+    }
 
 
     protected override void Update()
@@ -121,17 +137,30 @@ public class DamageSim : UIBackBtnHandle
     }
     private void OnDisable()
     {
+        ResetSetting();
+    }
+    public void ResetSetting()
+    {
         setting.ResetAllSettings();
         for (int i = 0; i < dollSettings.Length; i++)
         {
             dollSettings[i].slug = false;
             dollSettings[i].equipmentStat.ResetAllStat();
         }
+        enemy.armor = 0;
+        enemy.dodge = 0;
     }
     public override void Open()
     {
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
+
+        if (!didUSeeWarning)
+        {
+            didUSeeWarning = true;
+            warning.anim = true;
+        }
+
 
         base.Open();
         SetTargetDolls();
@@ -211,22 +240,27 @@ public class DamageSim : UIBackBtnHandle
     /// </summary>
     public void SetTargetDolls()
     {
+        var selectors = SingleTon.instance.dollSelecter.selects;
         var tiles = SingleTon.instance.grid.tiles;
         int index = 0;
         ResetTargetDolls();
 
-        for (int i = 0; i < tiles.Length; i++)
+        for (int i = 0; i < selectors.Length; i++)
         {
-            if (tiles[i].doll != null)
+            if (tiles[selectors[i].gridPos - 1].doll != null)
             {
-                targetDolls[index].id = tiles[i].doll.dollData.id;
-                targetDolls[index].krName = tiles[i].doll.dollData.krName;
-                targetDolls[index].rank = tiles[i].doll.dollData.rank;
-                targetDolls[index].type = tiles[i].doll.dollData.type;
-                targetDolls[index].grow = tiles[i].doll.dollData.grow;
+                targetDolls[index].id = tiles[selectors[i].gridPos - 1].doll.dollData.id;
+                targetDolls[index].krName = tiles[selectors[i].gridPos - 1].doll.dollData.krName;
+                targetDolls[index].rank = tiles[selectors[i].gridPos - 1].doll.dollData.rank;
+                targetDolls[index].type = tiles[selectors[i].gridPos - 1].doll.dollData.type;
+                targetDolls[index].grow = tiles[selectors[i].gridPos - 1].doll.dollData.grow;
 
-                statMaker.CalcStat(tiles[i].doll.dollData, targetDolls[index], dollSettings[index].level, dollSettings[index].favor);
-                statMaker.CalcStatPlusBuff(targetDolls[index], tiles[i].tileBuff);
+                //임시. 개장인형은 120렙 처리!
+                if (targetDolls[index].id > 20000)
+                    statMaker.CalcStat(tiles[selectors[i].gridPos - 1].doll.dollData, targetDolls[index], 120, dollSettings[index].favor);
+                else
+                    statMaker.CalcStat(tiles[selectors[i].gridPos - 1].doll.dollData, targetDolls[index], dollSettings[index].level, dollSettings[index].favor);
+                statMaker.CalcStatPlusBuff(targetDolls[index], tiles[selectors[i].gridPos - 1].tileBuff);
 
                 //nextAttackFrames[index] = CalcFrame(index, targetDolls[index].stat.rate);
                 index++;
@@ -363,7 +397,7 @@ public class DamageSim : UIBackBtnHandle
     }
 
     /// <summary>
-    /// 단순 치명률만 계산한 값, 야간전/장갑 고려X, 치명타데미지고려x
+    /// 실 데미지 계산.
     /// </summary>
     private int CalcDamage(int index, int link = 5)
     {
@@ -371,10 +405,10 @@ public class DamageSim : UIBackBtnHandle
             return 0;
 
         int value;
-        int armorDamage = targetDolls[index].stat.armorPiercing - enemy.armor;
+        int armorDamage = targetDolls[index].stat.armorPiercing + dollSettings[index].equipmentStat.armorPiercing - enemy.armor;
         armorDamage = Mathf.Min(armorDamage, 2);
 
-        value = Mathf.Max(targetDolls[index].stat.pow + dollSettings[index].equipmentStat.pow + armorDamage,1);
+        value = Mathf.Max(targetDolls[index].stat.pow + dollSettings[index].equipmentStat.pow + armorDamage, 1);
 
 
         var crit = Mathf.Clamp(
@@ -382,11 +416,23 @@ public class DamageSim : UIBackBtnHandle
         var critDmg = value * (1.5f
             + (float)(targetDolls[index].stat.critDmg + dollSettings[index].equipmentStat.critDmg) / 100f);
 
-        var hit = targetDolls[index].stat.hit / (float)(targetDolls[index].stat.hit + enemy.dodge);
+        int _hit = targetDolls[index].stat.hit + dollSettings[index].equipmentStat.hit;
+        float hit;
+
+        if (isNightMode)
+        {
+            float nightHit;
+            nightHit = _hit * (0.1f + (0.9f * ((targetDolls[index].stat.nightView + dollSettings[index].equipmentStat.nightView) / 100f)));
+            hit = nightHit / (nightHit + enemy.dodge);
+        }
+        else
+        {
+            hit = _hit / (float)(_hit + enemy.dodge);
+        }
 
         if (dollSettings[index].slug)
-            return (int)(Mathf.Ceil(value * (1 - crit) + critDmg * crit) * link * hit * 3) ;
+            return (int)Mathf.Ceil((value * (1 - crit) + critDmg * crit) * link * hit * 3);
         else
-            return (int)(Mathf.Ceil(value * (1 - crit) + critDmg * crit) * link * hit);
+            return (int)Mathf.Ceil((value * (1 - crit) + critDmg * crit) * link * hit);
     }
 }

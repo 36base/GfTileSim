@@ -32,6 +32,7 @@ public class DamageSimSetting : MonoBehaviour
     {
         SingleTon.instance.damageSim.SetTargetDolls();
         SetAllEquipToStat();
+        SetEnemy();
         SingleTon.instance.damageSim.MakeGraph(true);
     }
 
@@ -131,6 +132,51 @@ public class DamageSimSetting : MonoBehaviour
         }
     }
 
+    public void SetEnemy()
+    {
+        int dodge;
+        if(!int.TryParse(enemyDodge.text, out dodge))
+        {
+            enemyDodge.text = 0.ToString();
+            dodge = 0;
+        }
+
+        int armor;
+        if(!int.TryParse(enemyArmor.text, out armor))
+        {
+            enemyArmor.text = 0.ToString();
+            armor = 0;
+        }
+
+        SingleTon.instance.damageSim.enemy.dodge = dodge;
+        SingleTon.instance.damageSim.enemy.armor = armor;
+    }
+
+    //0-2 베스피드
+    public void SetEnemy_Default1()
+    {
+        enemyDodge.text = "10";
+        enemyArmor.text = "0";
+    }
+    //7-2N 야간 박쥐
+    public void SetEnemy_Default2()
+    {
+        enemyDodge.text = "80";
+        enemyArmor.text = "0";
+    }
+    //7-3N 장갑병
+    public void SetEnemy_Default3()
+    {
+        enemyDodge.text = "0";
+        enemyArmor.text = "104";
+    }
+    //10-6 법관
+    public void SetEnemy_Default4()
+    {
+        enemyDodge.text = "10";
+        enemyArmor.text = "25";
+    }
+
     private void ShowEquipByType()
     {
         var damageSim = SingleTon.instance.damageSim;
@@ -141,12 +187,17 @@ public class DamageSimSetting : MonoBehaviour
                 dollSettingToggles[i].equips[j].gameObject.SetActive(false);
             }
 
+            if (damageSim.targetDolls[i].id == -1)
+                continue;
+
             switch (damageSim.targetDolls[i].type)
             {
                 case DollType.HG:
                     dollSettingToggles[i].equips[3].gameObject.SetActive(true);
                     dollSettingToggles[i].equips[5].gameObject.SetActive(true);
                     dollSettingToggles[i].equips[9].gameObject.SetActive(true);
+                    if(damageSim.targetDolls[i].id == 183)
+                        dollSettingToggles[i].equips[4].gameObject.SetActive(true);
                     break;
                 case DollType.SMG:
                     dollSettingToggles[i].equips[0].gameObject.SetActive(true);
@@ -155,6 +206,8 @@ public class DamageSimSetting : MonoBehaviour
                     dollSettingToggles[i].equips[3].gameObject.SetActive(true);
                     dollSettingToggles[i].equips[5].gameObject.SetActive(true);
                     dollSettingToggles[i].equips[9].gameObject.SetActive(true);
+                    if(damageSim.targetDolls[i].id == 213)
+                        dollSettingToggles[i].equips[4].gameObject.SetActive(true);
                     break;
                 case DollType.RF:
                     dollSettingToggles[i].equips[0].gameObject.SetActive(true);
@@ -171,6 +224,8 @@ public class DamageSimSetting : MonoBehaviour
                     dollSettingToggles[i].equips[3].gameObject.SetActive(true);
                     dollSettingToggles[i].equips[8].gameObject.SetActive(true);
                     dollSettingToggles[i].equips[9].gameObject.SetActive(true);
+                    if(damageSim.targetDolls[i].id == 138)
+                        dollSettingToggles[i].equips[4].gameObject.SetActive(true);
                     break;
                 case DollType.MG:
                     dollSettingToggles[i].equips[0].gameObject.SetActive(true);

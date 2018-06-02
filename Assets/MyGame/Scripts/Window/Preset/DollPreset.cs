@@ -252,6 +252,7 @@ public class DollPreset : MonoBehaviour
                     SingleTon.instance.msg.SetMsg("인형 번호 오류");
                 }
             }
+            SingleTon.instance.damageSim.ResetSetting();
         }
         else
         {
