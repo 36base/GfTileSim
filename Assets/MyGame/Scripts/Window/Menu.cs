@@ -8,7 +8,8 @@ public class Menu : UIBackBtnHandle
     public Toggle infoToggle;
     public Toggle soundToggle;
     public Toggle lossBuffToggle;
-    public Toggle showAdToggle;
+    //public Toggle showAdToggle;
+    public Toggle graphAnimToggle;
 
     protected override void Update()
     {
@@ -60,6 +61,16 @@ public class Menu : UIBackBtnHandle
             lossBuffToggle.isOn = false;
         }
 
+        if(PlayerPrefs.HasKey("animGraph"))
+        {
+            graphAnimToggle.isOn = ReturnBool(PlayerPrefs.GetInt("animGraph"));
+        }
+        else
+        {
+            graphAnimToggle.isOn = true;
+        }
+
+
         //if(PlayerPrefs.HasKey("showAd"))
         //{
         //    showAdToggle.isOn = ReturnBool(PlayerPrefs.GetInt("showAd"));
@@ -71,6 +82,7 @@ public class Menu : UIBackBtnHandle
         SetInfo();
         SetSound();
         SetLossBuff();
+        SetGraphAnim();
         //SetShowAd();
     }
     private bool ReturnBool(int value)
@@ -127,15 +139,29 @@ public class Menu : UIBackBtnHandle
         }
     }
 
-    public void SetShowAd()
+    public void SetGraphAnim()
     {
-        if(showAdToggle.isOn)
+        if (graphAnimToggle.isOn)
         {
-            PlayerPrefs.SetInt("showAd", 1);
+            SingleTon.instance.damageSim.useAnimGraph = true;
+            PlayerPrefs.SetInt("animGraph", 1);
         }
         else
         {
-            PlayerPrefs.SetInt("showAd", 0);
+            SingleTon.instance.damageSim.useAnimGraph = false;
+            PlayerPrefs.SetInt("animGraph", 0);
         }
     }
+
+    //public void SetShowAd()
+    //{
+    //    if(showAdToggle.isOn)
+    //    {
+    //        PlayerPrefs.SetInt("showAd", 1);
+    //    }
+    //    else
+    //    {
+    //        PlayerPrefs.SetInt("showAd", 0);
+    //    }
+    //}
 }

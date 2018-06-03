@@ -27,7 +27,7 @@ public class DamageSimToolTip : MonoBehaviour
     {
         var pointerPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (pointerPos.x > 0)
+        if (pointerPos.x > 1.5f)
         {
             if (!right)
             {

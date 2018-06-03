@@ -29,7 +29,7 @@ public class DollSetting
 
 public class Enemy
 {
-    public int dodge = 0;
+    public int dodge = 10;
     public int armor = 0;
 }
 
@@ -55,6 +55,7 @@ public class DamageSim : UIBackBtnHandle
     public float yRatio = 0.1f;
     public float xRatio = 3f;
 
+    public bool useAnimGraph = true;
     bool isAnimGraph;
     public bool isNightMode;
     [Space]
@@ -120,7 +121,19 @@ public class DamageSim : UIBackBtnHandle
 
     protected override void Update()
     {
-        base.Update();
+        if (Input.GetKeyDown(KeyCode.Escape) && backBtnHandle && isWindow)
+        {
+            if(setting.opened)
+            {
+                setting.OKButton();
+                setting.Close();
+            }
+            else
+            {
+                Close();
+            }
+        }
+
         if (isAnimGraph)
         {
             currTime += Time.deltaTime;
@@ -148,7 +161,7 @@ public class DamageSim : UIBackBtnHandle
             dollSettings[i].equipmentStat.ResetAllStat();
         }
         enemy.armor = 0;
-        enemy.dodge = 0;
+        enemy.dodge = 10;
     }
     public override void Open()
     {
@@ -354,7 +367,8 @@ public class DamageSim : UIBackBtnHandle
                 }
             }
         }
-        if (anim)
+
+        if (anim && useAnimGraph)
         {
             isAnimGraph = true;
             currTime = 0f;

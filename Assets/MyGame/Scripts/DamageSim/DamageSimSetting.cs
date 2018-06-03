@@ -19,13 +19,18 @@ public class DamageSimSetting : MonoBehaviour
 
     public Animator anim;
 
+    public bool opened;
     public void Open()
     {
+        opened = true;
+        SingleTon.instance.UISound();
         anim.SetBool("open", true);
         ShowEquipByType();
     }
     public void Close()
     {
+        opened = false;
+        //SingleTon.instance.UISound();
         anim.SetBool("open", false);
     }
     public void OKButton()
@@ -270,7 +275,7 @@ public class DamageSimSetting : MonoBehaviour
     public void ResetEnemySetting()
     {
         enemyArmor.text = "0";
-        enemyDodge.text = "0";
+        enemyDodge.text = "10";
     }
     public void ResetLevelSetting()
     {
