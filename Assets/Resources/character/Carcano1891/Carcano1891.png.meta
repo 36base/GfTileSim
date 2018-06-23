@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 75329288851641d46ab3c78f9ceff7ca
-timeCreated: 1519918605
+guid: 77591f0592ad8094ba53d611ca81490a
+timeCreated: 1529768612
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -76,12 +76,12 @@ TextureImporter:
     overridden: 0
   - buildTarget: WebGL
     maxTextureSize: 512
-    textureFormat: 29
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []

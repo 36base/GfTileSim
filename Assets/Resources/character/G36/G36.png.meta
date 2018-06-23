@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: dc06ba087e742f04d8f4e413ce18c40f
-timeCreated: 1519501206
+guid: 1e6e0bc5221a6c94ab8ec114f63b18d5
+timeCreated: 1529768514
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -24,11 +24,11 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -76,12 +76,12 @@ TextureImporter:
     overridden: 0
   - buildTarget: WebGL
     maxTextureSize: 512
-    textureFormat: 29
-    textureCompression: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
