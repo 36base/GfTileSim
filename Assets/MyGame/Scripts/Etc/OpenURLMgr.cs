@@ -30,7 +30,7 @@ public class OpenURLMgr : MonoBehaviour
     }
     public void OpenGFDictionaryURL()
     {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.soomae.gfl");
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.gfl.dic");
     }
     public void OpenGoogleSheetURL()
     {
