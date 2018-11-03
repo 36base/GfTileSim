@@ -503,4 +503,19 @@ public class Grid : MonoBehaviour
         else
             return value;
     }
+
+    /// <summary>
+    /// 선택한 인형의 다음 모션 보기
+    /// </summary>
+    public void NextAnimation()
+    {
+        if (selectedDoll == null)
+        {
+            SingleTon.instance.msg.SetMsg("인형을 먼저 선택하세요");
+            return;
+        }
+
+
+        selectedDoll.ChangeDollAnimation();
+    }
 }

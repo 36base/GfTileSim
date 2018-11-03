@@ -151,7 +151,7 @@ public class SpineEditorUtilities : AssetPostprocessor {
 	static Dictionary<int, SkeletonUtilityBone> skeletonUtilityBoneTable;
 	public static float defaultScale = 0.01f;
 	public static float defaultMix = 0.2f;
-	public static string defaultShader = "Spine/Skeleton";
+	public static string defaultShader = "Spine/Bones";
 	public static bool initialized;
 
 	const string DEFAULT_MIX_KEY = "SPINE_DEFAULT_MIX";
