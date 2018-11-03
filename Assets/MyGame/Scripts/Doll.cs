@@ -154,7 +154,14 @@ public class Doll : MonoBehaviour
                 animState = DollAnimState.die;
                 break;
             case DollAnimState.die:
-                skelAnim.loop = false;
+                if(FindAnimation("victoryloop"))
+                {
+                    skelAnim.loop = false;
+                }
+                else
+                {
+                    skelAnim.loop = true;
+                }
                 skelAnim.AnimationName = "victory";
                 animState = DollAnimState.victory;
                 break;
@@ -181,7 +188,7 @@ public class Doll : MonoBehaviour
 
     private void CallBackOnComplete(Spine.AnimationState state, int trackIndex, Spine.Event e)
     {
-        if(animState == DollAnimState.victory)
+        if (animState == DollAnimState.victory)
         {
             skelAnim.loop = true;
             skelAnim.AnimationName = "victoryloop";
